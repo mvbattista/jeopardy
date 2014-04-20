@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="./bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="./bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" language="Javascript" src="./bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" language="Javascript" src="./jeopardy.js"></script>
+
+  <title>HTML Jeopardy</title>
+</head>
+<body>
+<div class="panel panel-default">
+	<div class="panel-heading"></div>
+	<div class="panel-body" id="main-board"></div>
+	<div class="panel-footer">
+                <div class="pull-right"><h4>Score: <span id="score">0</span></h4></div>
+                <div class="clearfix"></div>
+        </div>
+</div>
+<div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p id="question" style="font-size: 1.5em"></p>
+      </div>
+      <div class="modal-footer ">
+        <div id="answers" class="text-center">
+
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
