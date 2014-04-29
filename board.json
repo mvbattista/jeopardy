@@ -1,6 +1,6 @@
 [
     {
-        "name":"category1",
+        "name":"ROBOTS",
         "questions":[
             {
                 "value":100,
@@ -55,7 +55,7 @@
         ]
     },
     {
-        "name":"category2",
+        "name":"NICKNAMES",
         "questions":[
             {
                 "value":100,
@@ -110,7 +110,7 @@
         ]
     },
     {
-        "name":"category3",
+        "name":"FAMOUS FIRST WORDS",
         "questions":[
             {
                 "value":100,
@@ -165,7 +165,7 @@
         ]
     },
     {
-        "name":"category4",
+        "name":"GOING \"DARK\"",
         "questions":[
             {
                 "value":100,
@@ -220,7 +220,7 @@
         ]
     },
     {
-        "name":"category5",
+        "name":"FICTIONAL COMPANIES",
         "questions":[
             {
                 "value":100,
@@ -275,7 +275,7 @@
         ]
     },
     {
-        "name":"category6",
+        "name":"PAINFULLY OBVIOUS",
         "questions":[
             {
                 "value":100,

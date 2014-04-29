@@ -36,7 +36,9 @@ $(function(){
     });
 
 });
-var score = 0;
+var score_player_1 = 0;
+var score_player_2 = 0;
+var score_player_3 = 0;
 var map;
 function loadBoard() {
     //function that turns the board.json (loaded in the the map variable) into a jeopardy board
@@ -63,7 +65,7 @@ function loadBoard() {
         var column = $('#cat-'+i);
         $.each(category.questions, function(n,question){
             //add questions
-            column.append('<div class="well question unanswered" data-question="'+n+'">'+question.value+'</div>')
+            column.append('<div class="well question unanswered text-center" data-question="'+n+'">$'+question.value+'</div>')
         });
     });
     $('.panel-heading').append('<div class="clearfix"></div>')

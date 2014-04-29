@@ -1,0 +1,15 @@
+#player-1-score-div {
+	text-align: right;
+}
+
+#player-2-score-div {
+	text-align: center;
+}
+
+#main-board {
+	background-color: blue;
+}
+
+.score-button-group {
+	text-align: center;
+}

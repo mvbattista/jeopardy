@@ -3,15 +3,17 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="./bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css">
 
   <!-- Optional theme -->
-  <link rel="stylesheet" href="./bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./jeopardy.css">
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
   <!-- Latest compiled and minified JavaScript -->
-  <script type="text/javascript" language="Javascript" src="./bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" language="Javascript" src="./bootstrap/dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" language="Javascript" src="./jeopardy.js"></script>
 
@@ -22,7 +24,11 @@
 	<div class="panel-heading"></div>
 	<div class="panel-body" id="main-board"></div>
 	<div class="panel-footer">
-                <div class="pull-right"><h4>Score: <span id="score">0</span></h4></div>
+    <div class="col-md-4" id="player-1-score-div"><h4>Player 1: $<span id="player-1-score">0</span></h4></div>
+    <div class="col-md-4" id="player-2-score-div"><h4>Player 2: $<span id="player-2-score">0</span></h4></div>
+    <div class="col-md-4" id="player-3-score-div"><h4>Player 3: $<span id="player-3-score">0</span></h4></div>
+
+                <!--<div class="pull-right"><h4>Score: <span id="score">0</span></h4></div>-->
                 <div class="clearfix"></div>
         </div>
 </div>
@@ -31,16 +37,49 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title text-center">Modal title</h4>
       </div>
       <div class="modal-body">
         <p id="question" style="font-size: 1.5em"></p>
       </div>
       <div class="modal-footer ">
         <div id="answers" class="text-center">
-
         </div>
-      </div>
+
+        <div id="scoring-buttons" class="text-center">
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger" id="p1-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P1
+              </button>
+              <button type="button" class="btn btn-success" id="p1-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P1
+              </button>
+            </div>
+          </div>
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger" id="p2-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P2
+              </button>
+              <button type="button" class="btn btn-success" id="p2-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P2
+              </button>
+            </div>
+          </div>
+          <div class="score-button-group">
+            <div class="col-md-4">  
+              <button type="button" class="btn btn-danger" id="p3-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P3
+              </button>
+              <button type="button" class="btn btn-success" id="p3-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P3
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /.scoring-buttons -->
+      </div> <!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
