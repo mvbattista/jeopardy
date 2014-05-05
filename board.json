@@ -4,53 +4,28 @@
         "questions":[
             {
                 "value":100,
-                "question":"Question 1 in category 1 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+                "question":"SPOILER ALERT: HIS DYING WORDS IN THE ANIMATED TRANSFORMERS MOVIE ARE  \"TIL ALL ARE ONE\"",
+                "answer": "Who is Optimus Prime?"
             },
             {
                 "value":200,
-                "question":"Question 2 in category 1 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+                "question":"THIS ROBOT BOUNTY HUNTER WAS HIRED TO FIND THE MILLENNIUM FALCON IN THE EMPIRE STRIKES BACK",
+                "answer": "Who is IG-88 or 4-LOM?"
             },
             {
                 "value":300,
-                "question":"Question 3 in category 1 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+                "question":"ROBOTS B.O.B. AND V.I.N.C.E.N.T. PROVIDED SOME COMIC RELIEF IN THIS DARK 1979 DISNEY SCI-FI FILM",
+                "answer": "What is The Black Hole?"
             },
             {
                 "value":400,
-                "question":"Question 4 in category 1 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+                "question":"CHRIS JERICHO HOSTED THIS AUTOMATON FIGHTING COMPETITION ON SYFY IN EARLY 2013",
+                "answer": "What is Robot Combat League?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 1 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "HE'S THE ROBOT WHO GETS ELECTROCUTED AND COMES TO LIFE IN 1986'S SHORT CIRCUIT",
+                "answer": "Who is Johnny 5/Number 5?"
             }
         ]
     },
@@ -59,53 +34,28 @@
         "questions":[
             {
                 "value":100,
-               "question":"Question 1 in category 2 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"MINECRAFT CREATOR MARKUS PERSSON IS BETTER KNOWN BY THIS MONOSYLLABIC NICKNAME",
+                "answer": "What is Notch?"
             },
             {
                 "value":200,
-               "question":"Question 2 in category 2 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"IT'S THE ALTER EGO OF PENNY ARCADE'S MIKE KRAHULIK - AND THE NAME OF MIKE'S SON",
+                "answer": "What is Gabe?"
             },
             {
                 "value":300,
-               "question":"Question 3 in category 2 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"ESPORTSCASTER AND MACHINIMA PERSONALITY RYAN WYATT IS BEST KNOWN BY THIS SHORT NICKNAME",
+                "answer": "What is Fwiz?"
             },
             {
                 "value":400,
-               "question":"Question 4 in category 2 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"IN ADDITION TO \"CLIFFYB\", CLIFF BLESZINSKI IS SOMETIMES KNOWN BY THIS LARGE NICKNAME, BRO",
+                "answer": "What is Dude Huge?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 2 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "LARRY HRYB BORROWED HIS GAMERTAG, \"MAJOR NELSON\", FROM THIS 1960S SITCOM",
+                "answer": "What is I Dream of Jeannie?"
             }
         ]
     },
@@ -114,53 +64,28 @@
         "questions":[
             {
                 "value":100,
-               "question":"Question 1 in category 3 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"\"BITE MY SHINY METAL ASS\"",
+                "answer": "Who is Bender?"
             },
             {
                 "value":200,
-               "question":"Question 2 in category 3 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"\"WHY, YOU SLIMY, DOUBLE-CROSSING, NO-GOOD SWINDLER. YOU GOT A LOT OF GUTS COMING HERE, AFTER WHAT  YOU PULLED\"",
+                "answer": "Who is Lando Calrissian?"
             },
             {
                 "value":300,
-               "question":"Question 3 in category 3 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"\"LISTEN TO MY STORY. THIS MAY BE OUR LAST CHANCE.\"",
+                "answer": "Who is Tidus?"
             },
             {
                 "value":400,
-               "question":"Question 4 in category 3 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"\"FARMBOY, POLISH MY HORSE'S SADDLE. I WANT TO SEE MY FACE SHINING IN IT BY MORNING\"",
+                "answer": "Who is Princess Buttercup?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 3 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "\"THIS IS IT.  THIS IS WHERE FORRESTAL CASHED IN  HIS CHIPS\"",
+                "answer": "Who is Indiana Jones?"
             }
         ]
     },
@@ -169,53 +94,28 @@
         "questions":[
             {
                 "value":100,
-               "question":"Question 1 in category 4 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"THIS UNFORGIVING ACTION/RPG FROM FROM SOFTWARE TAKES PLACE IN THE KINGDOM OF LORDRAN",
+                "answer": "What is Dark Souls?"
             },
             {
                 "value":200,
-               "question":"Question 2 in category 4 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"TIM BURTON AND JOHNNY DEPP RESURRECTED THIS LATE-60S VAMPIRE SOAP OPERA AS A COMEDY FILM IN 2012",
+                "answer": "What is Dark Shadows?"
             },
             {
                 "value":300,
-               "question":"Question 3 in category 4 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"THIS CLASSIC FRANK MILLER GRAPHIC NOVEL FEATURES A BITTER, AGING BATMAN AND A FEMALE ROBIN",
+                "answer": "What is The Dark Knight Returns?"
             },
             {
                 "value":400,
-               "question":"Question 4 in category 4 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"GELFLINGS KIRA AND JEN ESCAPE THE SKEKSIS IN THIS 1982 JIM HENSON CULT FANTASY FAVORITE",
+                "answer": "What is The Dark Crystal?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 4 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "THE SPIDER-MAN STAGE MUSICAL,  NOW PLAYING  ON BROADWAY, FEATURES THIS UNUSUAL SUBTITLE",
+                "answer": "What is Turn Off the Dark?"
             }
         ]
     },
@@ -224,53 +124,28 @@
         "questions":[
             {
                 "value":100,
-               "question":"Question 1 in category 5 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"YOU CAN BLAME THIS FICTIONAL COMPANY FOR RESIDENT EVIL'S  T-VIRUS",
+                "answer": "What is Umbrella?"
             },
             {
                 "value":200,
-               "question":"Question 2 in category 5 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"\"MORE HUMAN THAN HUMAN\" IS THE MOTTO OF THIS REPLICANT MANUFACTURER FROM BLADE RUNNER",
+                "answer": "What is Tyrell Corporation?"
             },
             {
                 "value":300,
-               "question":"Question 3 in category 5 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"MILES DYSON CREATED NEURAL-NET PROCESSORS FOR THIS COMPANY, WHICH ULTIMATELY BUILDS SKYNET",
+                "answer": "What is Cyberdyne Systems?"
             },
             {
                 "value":400,
-               "question":"Question 4 in category 5 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"THEY OWN ROBOCOP, ED-209, AND THE ENTIRE DETROIT POLICE FORCE",
+                "answer": "What is Omni Consumer Products/OCP?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 5 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "IN TRON, KEVIN FLYNN HACKS HIS WAY INTO THE NETWORK OF THIS FICTIONAL  GAME PUBLISHER",
+                "answer": "What is Encom?"
             }
         ]
     },
@@ -279,53 +154,28 @@
         "questions":[
             {
                 "value":100,
-               "question":"Question 1 in category 6 for 100 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"SHE'S THE PRINCESS IN THE CLASSIC RPG THE LEGEND OF ZELDA",
+                "answer": "Who is Zelda?"
             },
             {
                 "value":200,
-               "question":"Question 2 in category 6 for 200 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"BUNGIE'S WORKING TITLE FOR MARATHON WAS MARATHON, BUT ONI'S WORKING TITLE WAS THIS",
+                "answer": "What is Oni?"
             },
             {
                 "value":300,
-               "question":"Question 3 in category 6 for 300 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"THIS TWO-BUTTON FIGHTING GAME STARS TWO  GUYS NAMED  KICK AND DIVE",
+                "answer": "What is Divekick?"
             },
             {
                 "value":400,
-               "question":"Question 4 in category 6 for 400 points",
-                "answers":[
-                    {
-                        "text":"A",
-                        "correct":true
-                    }
-                ]
+               "question":"BRODERBUND'S CASTLE WOLFENSTEIN WAS AN INSPIRATION FOR THIS 1992 FIRST-PERSON SHOOTER FROM ID SOFTWARE",
+                "answer": "What is Wolfenstein 3D?"
             },
             {
                 "value": 500,
-                "question": "Question 5 in category 6 for 500 points",
-                "answers": [
-                    {
-                        "text": "A",
-                        "correct": true
-                    }
-                ]
+                "question": "THIS VIDEO GAME CHARACTER  IS BLUE, COLLECTS RINGS,  AND GOES FAST",
+                "answer": "What is Sonic/Dankey Kang?"
             }
         ]
     }

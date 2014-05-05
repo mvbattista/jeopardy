@@ -42,44 +42,46 @@
       <div class="modal-body">
         <p id="question" style="font-size: 1.5em"></p>
       </div>
-      <div class="modal-footer ">
-        <div id="answers" class="text-center">
+      <div id="answer" class="text-center modal-footer">
+        <div id="answer-text" class="text-center"></div>
+        <div id="answer-buttons" class="text-center">
+          <button type="button" class="btn btn-primary" id="answer-show-button">Show</button>
+          <button type="button" class="btn btn-primary" id="answer-close-button">Close</button>
         </div>
+      </div><!-- /.answer -->
 
-        <div id="scoring-buttons" class="text-center">
-          <div class="score-button-group">
-            <div class="col-md-4">
-              <button type="button" class="btn btn-danger" id="p1-wrong-button">
-                <span class="glyphicon glyphicon-remove"></span>P1
-              </button>
-              <button type="button" class="btn btn-success" id="p1-right-button">
-                <span class="glyphicon glyphicon-ok"></span>P1
-              </button>
-            </div>
+      <div id="scoring-buttons" class="text-center modal-footer">
+        <div class="score-button-group">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-danger score-button" id="p1-wrong-button">
+              <span class="glyphicon glyphicon-remove"></span>P1
+            </button>
+            <button type="button" class="btn btn-success score-button" id="p1-right-button">
+              <span class="glyphicon glyphicon-ok"></span>P1
+            </button>
           </div>
-          <div class="score-button-group">
-            <div class="col-md-4">
-              <button type="button" class="btn btn-danger" id="p2-wrong-button">
-                <span class="glyphicon glyphicon-remove"></span>P2
-              </button>
-              <button type="button" class="btn btn-success" id="p2-right-button">
-                <span class="glyphicon glyphicon-ok"></span>P2
-              </button>
-            </div>
+        </div>
+        <div class="score-button-group">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-danger score-button" id="p2-wrong-button">
+              <span class="glyphicon glyphicon-remove"></span>P2
+            </button>
+            <button type="button" class="btn btn-success score-button" id="p2-right-button">
+              <span class="glyphicon glyphicon-ok"></span>P2
+            </button>
           </div>
-          <div class="score-button-group">
-            <div class="col-md-4">  
-              <button type="button" class="btn btn-danger" id="p3-wrong-button">
-                <span class="glyphicon glyphicon-remove"></span>P3
-              </button>
-              <button type="button" class="btn btn-success" id="p3-right-button">
-                <span class="glyphicon glyphicon-ok"></span>P3
-              </button>
-            </div>
+        </div>
+        <div class="score-button-group">
+          <div class="col-md-4">  
+            <button type="button" class="btn btn-danger score-button" id="p3-wrong-button">
+              <span class="glyphicon glyphicon-remove"></span>P3
+            </button>
+            <button type="button" class="btn btn-success score-button" id="p3-right-button">
+              <span class="glyphicon glyphicon-ok"></span>P3
+            </button>
           </div>
-
-        </div><!-- /.scoring-buttons -->
-      </div> <!-- /.modal-footer -->
+        </div>
+      </div><!-- /.scoring-buttons -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

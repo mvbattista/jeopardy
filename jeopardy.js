@@ -4,7 +4,7 @@ $(function(){
         'global': false,
         type:'GET',
         dataType:'json',
-        url:'board.json',
+        url:'board_pretty.json',
         success:function(data){
             map = data;
             loadBoard();
@@ -14,32 +14,29 @@ $(function(){
         //event bound to clicking on a tile. it grabs the data from the click event, populates the modal, fires the modal, and binds the answer method
         var category = $(this).parent().data('category');
         var question = $(this).data('question');
+        var answer = map[category].questions[question].answer;
         var value = map[category].questions[question].value;
-        var answers = $('#answers');
-        $('.modal-title').empty().text(map[category].name);
+
+        $('.modal-title').empty().text(map[category].name + ' - $' + value);
         $('#question').empty().text(map[category].questions[question].question);
-        answers.empty();
-        $.each(map[category].questions[question].answers, function(i, answer){//loop over the answers and make buttons for each
-            answers.append(
-                '<button class="btn btn-danger answer" ' +
-                    'data-category="'+category+'"' +
-                    'data-question="'+question+'"' +
-                    'data-value="'+value+'"' +
-                    'data-correct="'+answer.correct+'"' +
-                    '>'+ answer.text+'</button><br><br>'
-            )
-        });
-        $('#question-modal').modal('show');//fire modal
-        console.log(category, question);
-        console.log(map[category].questions[question]);
-        handleAnswer(); //bind answer onclick to newly created buttons
+        $('#answer-text').text(answer).hide();
+        $('#question-modal').modal('show'); //fire modal
+        $('#answer-close-button').hide().data('question', question).data('category', category);
+        $('#answer-show-button').show();
+        $('#question-modal .score-button').prop('disabled', false);
+        $('#question-modal .score-button').data('value', value);
+        // console.log(category, question);
+        // console.log(map[category].questions[question]);
+        handleAnswer();
     });
 
 });
+
 var score_player_1 = 0;
 var score_player_2 = 0;
 var score_player_3 = 0;
 var map;
+
 function loadBoard() {
     //function that turns the board.json (loaded in the the map variable) into a jeopardy board
     var board = $('#main-board');
@@ -73,17 +70,38 @@ function loadBoard() {
 }
 
 function updateScore(){
-    $('#score').empty().text(score);
+    $('#player-1-score').empty().text(score_player_1);
+    $('#player-2-score').empty().text(score_player_2);
+    $('#player-3-score').empty().text(score_player_3);
 }
 
 function handleAnswer(){
-    $('.answer').click(function(){// hide empty the tile, make it unclickable, update the score if correct, and hide the modal
-        var tile= $('div[data-category="'+$(this).data('category')+'"]>[data-question="'+$(this).data('question')+'"]')[0];
-        $(tile).empty().removeClass('unanswered').unbind().css('cursor','not-allowed');
-        if ($(this).data('correct')){
-            score += parseInt($(this).data('value'));
-        }
-        $('#question-modal').modal('hide');
+    $('.score-button').unbind("click").click(function(e){
+        e.stopPropagation();
+        var buttonID = $(this).attr("id");
+        var answerValue = parseInt($(this).data('value'));
+        var buttonAction = buttonID.substr(3, 5);
+        var playerNumber = buttonID.charAt(1);
+        var scoreVariable = 'score_player_' + playerNumber;
+
+        buttonAction === 'right' ? window[scoreVariable] += answerValue 
+            : window[scoreVariable] -= answerValue;
+        // console.log(buttonID + " " + answerValue + " " + scoreVariable + " " + window[scoreVariable]);
+        $(this).prop('disabled', true);
+        var otherButton = '#p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
+        $(otherButton).prop('disabled', true);
+        // Possible behavior of disabling all scoring after a right answer?
         updateScore();
-    })
+    });
+    
+    $('#answer-show-button').click(function(){
+        $(this).hide();
+        $('#answer-text').show();
+        $('#answer-close-button').show();
+    });
+    $('#answer-close-button').click(function(){
+        var tile = $('div[data-category="'+$(this).data('category')+'"]>[data-question="'+$(this).data('question')+'"]')[0];
+        $(tile).text('---').removeClass('unanswered').unbind().css('cursor','not-allowed');
+        $('#question-modal').modal('hide');
+    });
 }
