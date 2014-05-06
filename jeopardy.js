@@ -17,7 +17,7 @@ $(function(){
         var answer = map[category].questions[question].answer;
         var value = map[category].questions[question].value;
 
-        $('.modal-title').empty().text(map[category].name + ' - $' + value);
+        $('#modal-answer-title').empty().text(map[category].name + ' - $' + value);
         $('#question').empty().text(map[category].questions[question].question);
         $('#answer-text').text(answer).hide();
         $('#question-modal').modal('show'); //fire modal
@@ -29,6 +29,14 @@ $(function(){
         // console.log(map[category].questions[question]);
         handleAnswer();
     });
+    $('#score-adjust').click(function(){
+        $('#score-adjust-modal').modal('show');
+        $('#score-player-1-input').val(score_player_1);
+        $('#score-player-2-input').val(score_player_2);
+        $('#score-player-3-input').val(score_player_3);
+        adjustScores();
+
+    });
 
 });
 
@@ -36,6 +44,21 @@ var score_player_1 = 0;
 var score_player_2 = 0;
 var score_player_3 = 0;
 var map;
+
+function adjustScores(){
+    $('#score-adjust-save').click(function(){
+        for (var i = 1; i < 4; i++) {
+            var scoreVariableName = 'score_player_' + i;
+            var inputName = '#score-player-' + i + '-input';
+            var newScoreValue = $(inputName).val();
+            if (!(isNaN(newScoreValue))) {
+                window[scoreVariableName] = newScoreValue;
+            }
+
+        };
+        updateScore();
+    });
+}
 
 function loadBoard() {
     //function that turns the board.json (loaded in the the map variable) into a jeopardy board

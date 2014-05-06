@@ -31,13 +31,17 @@
                 <!--<div class="pull-right"><h4>Score: <span id="score">0</span></h4></div>-->
                 <div class="clearfix"></div>
         </div>
+      <div class="col-md-3" id="score-adjust-div">
+        <button type="button" class="btn btn-info" id="score-adjust">Adjust Scores</button>
+      </div>
 </div>
-<div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true">
+
+<div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title text-center">Modal title</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title text-center" id="modal-answer-title">Modal title</h4>
       </div>
       <div class="modal-body">
         <p id="question" style="font-size: 1.5em"></p>
@@ -85,5 +89,29 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="score-adjust-modal" role="dialog" aria-labelledby="score-adjust-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title text-center">Adjust Scores</h4></div>
+      <div id="adjust-score-input-div" class="modal-body text-center">
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 1 Score" id="score-player-1-input">
+          </div>
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 2 Score" id="score-player-2-input">
+          </div>
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 3 Score" id="score-player-3-input">
+          </div>
+          <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="score-adjust-save">Save and Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
