@@ -6,19 +6,37 @@ $(function(){
         dataType:'json',
         url:'board_pretty.json',
         success:function(data){
-            map = data;
+            jsonData = data;
+            currentBoard = jsonData[rounds[currentRound]];
             loadBoard();
         }
     });
-    $('.unanswered').click(function(){
+    $('#next-round').click(function(){
+        currentRound++;
+        if (currentRound >= rounds.length - 2) { // Will work out Final Jeopardy in future
+            $(this).prop('disabled',true);
+        }
+        currentBoard = jsonData[rounds[currentRound]];
+        $('.panel-heading').empty();
+        $('#main-board').empty();
+        loadBoard();
+    });
+    $(document).on('click', '.unanswered', function(){
         //event bound to clicking on a tile. it grabs the data from the click event, populates the modal, fires the modal, and binds the answer method
         var category = $(this).parent().data('category');
         var question = $(this).data('question');
-        var answer = map[category].questions[question].answer;
-        var value = map[category].questions[question].value;
+        var answer = currentBoard[category].questions[question].answer;
+        var value = currentBoard[category].questions[question].value;
+        var questionImage = currentBoard[category].questions[question].image;
 
-        $('#modal-answer-title').empty().text(map[category].name + ' - $' + value);
-        $('#question').empty().text(map[category].questions[question].question);
+        $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
+        $('#question').empty().text(currentBoard[category].questions[question].question);
+        if (questionImage){
+            $('#question-image').empty().append("<img src=./" + questionImage + ">").show();
+        }
+        else {
+            $('#question-image').empty().hide();
+        }
         $('#answer-text').text(answer).hide();
         $('#question-modal').modal('show'); //fire modal
         $('#answer-close-button').hide().data('question', question).data('category', category);
@@ -26,7 +44,7 @@ $(function(){
         $('#question-modal .score-button').prop('disabled', false);
         $('#question-modal .score-button').data('value', value);
         // console.log(category, question);
-        // console.log(map[category].questions[question]);
+        // console.log(currentBoard[category].questions[question]);
         handleAnswer();
     });
     $('#score-adjust').click(function(){
@@ -35,7 +53,6 @@ $(function(){
         $('#score-player-2-input').val(score_player_2);
         $('#score-player-3-input').val(score_player_3);
         adjustScores();
-
     });
 
 });
@@ -43,7 +60,9 @@ $(function(){
 var score_player_1 = 0;
 var score_player_2 = 0;
 var score_player_3 = 0;
-var map;
+var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
+var currentBoard;
+var currentRound = 0;
 
 function adjustScores(){
     $('#score-adjust-save').click(function(){
@@ -61,12 +80,12 @@ function adjustScores(){
 }
 
 function loadBoard() {
-    //function that turns the board.json (loaded in the the map variable) into a jeopardy board
+    //function that turns the board.json (loaded in the the currentBoard variable) into a jeopardy board
     var board = $('#main-board');
-    var columns = map.length;
+    var columns = currentBoard.length;
     var column_width = parseInt(12/columns); //get the width/12 rounded down, to use the bootstrap column width appropriate for the number of categories
-    console.log(columns);
-    $.each(map, function(i,category){
+    // console.log(columns);
+    $.each(currentBoard, function(i,category){
         //load category name
         var header_class = 'text-center col-md-' + column_width; 
         if (i === 0 && columns % 2 != 0){ //if the number of columns is odd, offset the first one by one to center them
