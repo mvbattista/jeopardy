@@ -17,7 +17,6 @@ Host on a website. Images should be located on the host server but referenced in
 ## TODO
 
 - Add daily double modal with blind bidding, linking to question data, and value.
-- Add Final Jeopardy board formatting, play functionality, and blind bidding
 - Add five second timer to question modal using Jeopardy 9 red/black block look with pause, play, and reset buttons.
 - Add sounds for time up, final jeopardy, and daily double 
 

@@ -7,9 +7,20 @@
 }
 
 #main-board {
-	background-color: blue;
+	background-color: navy;
+}
+
+#main-board-categories{
+	background-image: none;
+	background-color: navy;
+	color: white;
 }
 
 .score-button-group {
 	text-align: center;
+}
+
+#final-jeopardy-question {
+	text-align: center;
+	color: white;
 }

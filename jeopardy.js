@@ -20,10 +20,15 @@ $(function(){
         }
     });
 
-    $('#next-round').click(function(){
+    $('#next-round').unbind('click').click(function(e){
+        e.stopPropagation();
         currentRound++;
-        if (currentRound >= rounds.length - 2) { // Will work out Final Jeopardy in future
-            $(this).prop('disabled',true);
+        if (currentRound == rounds.length) {
+            $(this).prop('disabled', true);
+            window.location.reload();
+        }
+        else if (currentRound >= rounds.length - 1) {
+            $(this).text('New Game');
         }
         currentBoard = jsonData[rounds[currentRound]];
         $('.panel-heading').empty();
@@ -63,6 +68,18 @@ $(function(){
         $('#score-player-3-input').val(score_player_3);
         adjustScores();
     });
+    $(document).on('click', '#final-jeopardy-question-button', function(){
+        $(this).hide();
+        $('#final-jeopardy-question').show();
+        $('#final-jeopardy-answer-button').show();
+        // console.log('30 seconds, good luck'); Cue music
+    });
+    $(document).on('click', '#final-jeopardy-answer-button',function(){
+        $(this).hide();
+        $('#final-jeopardy-modal-answer').text(currentBoard['answer']);
+        $('#final-jeopardy-modal').modal('show');
+        handleFinalAnswer();
+    });
 
 });
 
@@ -81,7 +98,7 @@ function adjustScores(){
             var inputName = '#score-player-' + i + '-input';
             var newScoreValue = $(inputName).val();
             if (!(isNaN(newScoreValue))) {
-                window[scoreVariableName] = newScoreValue;
+                window[scoreVariableName] = parseInt(newScoreValue);
             }
 
         };
@@ -92,31 +109,41 @@ function adjustScores(){
 function loadBoard() {
     //function that turns the board.json (loaded in the the currentBoard variable) into a jeopardy board
     var board = $('#main-board');
-    var columns = currentBoard.length;
-    var column_width = parseInt(12/columns); //get the width/12 rounded down, to use the bootstrap column width appropriate for the number of categories
-    // console.log(columns);
-    $.each(currentBoard, function(i,category){
-        //load category name
-        var header_class = 'text-center col-md-' + column_width; 
-        if (i === 0 && columns % 2 != 0){ //if the number of columns is odd, offset the first one by one to center them
-
-            header_class += ' col-md-offset-1';
-        }
-        $('.panel-heading').append(
-            '<div class="'+header_class+'"><h4>'+category.name+'</h4></div>'
-        );
-        //add column
-        var div_class = 'category col-md-' + column_width;
-        if (i === 0 && columns % 2 != 0){
-            div_class += ' col-md-offset-1';
-        }
-        board.append('<div class="'+div_class+'" id="cat-'+i+'" data-category="'+i+'"></div>');
-        var column = $('#cat-'+i);
-        $.each(category.questions, function(n,question){
-            //add questions
-            column.append('<div class="well question unanswered text-center" data-question="'+n+'">$'+question.value+'</div>')
+    if (rounds[currentRound] === "final-jeopardy") {
+        $('.panel-heading').append('<div class="text-center col-md-6 col-md-offset-3"><h2>' + 
+            currentBoard['category'] + '</h2></div>');
+        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question">' + 
+            currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' + 
+            '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>');
+        $('#final-jeopardy-question').hide();
+        $('#final-jeopardy-answer-button').hide();
+    }
+    else {
+        var columns = currentBoard.length;
+        var column_width = parseInt(12/columns); //get the width/12 rounded down, to use the bootstrap column width appropriate for the number of categories
+        // console.log(columns);
+        $.each(currentBoard, function(i,category){
+            //load category name
+            var header_class = 'text-center col-md-' + column_width; 
+            if (i === 0 && columns % 2 != 0){ //if the number of columns is odd, offset the first one by one to center them
+                header_class += ' col-md-offset-1';
+            }
+            $('.panel-heading').append(
+                '<div class="'+header_class+'"><h4>'+category.name+'</h4></div>'
+            );
+            //add column
+            var div_class = 'category col-md-' + column_width;
+            if (i === 0 && columns % 2 != 0){
+                div_class += ' col-md-offset-1';
+            }
+            board.append('<div class="'+div_class+'" id="cat-'+i+'" data-category="'+i+'"></div>');
+            var column = $('#cat-'+i);
+            $.each(category.questions, function(n,question){
+                //add questions
+                column.append('<div class="well question unanswered text-center" data-question="'+n+'">$'+question.value+'</div>')
+            });
         });
-    });
+    }
     $('.panel-heading').append('<div class="clearfix"></div>')
 
 }
@@ -138,10 +165,9 @@ function handleAnswer(){
 
         buttonAction === 'right' ? window[scoreVariable] += answerValue 
             : window[scoreVariable] -= answerValue;
-        // console.log(buttonID + " " + answerValue + " " + scoreVariable + " " + window[scoreVariable]);
         $(this).prop('disabled', true);
-        var otherButton = '#p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
-        $(otherButton).prop('disabled', true);
+        var otherButtonID = '#p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
+        $(otherButtonID).prop('disabled', true);
         // Possible behavior of disabling all scoring after a right answer?
         updateScore();
     });
@@ -155,5 +181,27 @@ function handleAnswer(){
         var tile = $('div[data-category="'+$(this).data('category')+'"]>[data-question="'+$(this).data('question')+'"]')[0];
         $(tile).text('---').removeClass('unanswered').unbind().css('cursor','not-allowed');
         $('#question-modal').modal('hide');
+    });
+}
+
+function handleFinalAnswer(){
+    $('.final-score-button').unbind('click').click(function(e){
+        e.stopPropagation();
+        var buttonID = $(this).attr("id");
+        var buttonAction = buttonID.substr(9,5);
+        var playerNumber = buttonID.charAt(7);
+        var wagerID = '#wager-player-' + playerNumber + '-input';
+        var wager = parseInt($(wagerID).val());
+        var scoreVariable = 'score_player_' + playerNumber;
+        var otherButtonID = '#final-p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
+
+        buttonAction === 'right' ? window[scoreVariable] += wager : window[scoreVariable] -= wager;
+
+        $(this).prop('disabled', true);
+        $(otherButtonID).prop('disabled', true);
+        $(wagerID).prop('disabled', true).val('$' + window[scoreVariable]);
+
+        updateScore();
+
     });
 }

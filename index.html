@@ -23,7 +23,7 @@
 
 <body>
   <div class="panel panel-default">
-    <div class="panel-heading"></div>
+    <div class="panel-heading" id="main-board-categories"></div>
 
     <div class="panel-body" id="main-board"></div>
 
@@ -145,23 +145,90 @@
     </div>
   </div>
 
-
-<div class="modal fade" id="game-load-modal" role="dialog" aria-labelledby="game-load-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-center">Please select a file to upload</h4>
-      </div>
-      <div class="modal-body text-center" id="game-load-input-div">
-        <input type="file" id="input-file">
-        <button type="button" class="btn btn-primary" id="game-load-input-button">Load Game</button>
-      </div>
-      <div class="modal-footer">
-        <p class="bg-danger" id="game-load-error" aria-hidden="true"></p>
+  <div class="modal fade" id="game-load-modal" role="dialog" aria-labelledby="game-load-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Please select a game file to upload</h4>
+        </div>
+        <div class="modal-body text-center" id="game-load-input-div">
+          <input type="file" id="input-file">
+          <button type="button" class="btn btn-primary" id="game-load-input-button">Load Game</button>
+        </div>
+        <div class="modal-footer">
+          <p class="bg-danger" id="game-load-error" aria-hidden="true"></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="modal fade" id="final-jeopardy-modal" role="dialog" aria-labelledby="final-jeopardy-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center" id="final-jeopardy-modal-answer">Modal title</h4>
+        </div>
+
+        <div id="final-jeopardy-score-input-div" class="modal-body text-center">
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 1 Wager" id="wager-player-1-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 2 Wager" id="wager-player-2-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 3 Wager" id="wager-player-3-input" />
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div id="final-scoring-buttons" class="text-center modal-footer">
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p1-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P1
+              </button> 
+              <button type="button" class="btn btn-success final-score-button" id="final-p1-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P1
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p2-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P2
+              </button>
+              <button type="button" class="btn btn-success final-score-button" id="final-p2-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P2
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p3-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P3
+              </button>
+              <button type="button" class="btn btn-success final-score-button" id="final-p3-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P3
+              </button>
+            </div>
+          </div>
+        </div><!-- /.scoring-buttons -->
+
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="final-score-close">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
