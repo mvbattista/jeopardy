@@ -1,16 +1,25 @@
 $(function(){
-    $.ajax({//ajax method to load the board.json and call the loadBoard() function on success 
-        'async': false,
-        'global': false,
-        type:'GET',
-        dataType:'json',
-        url:'board_pretty.json',
-        success:function(data){
-            jsonData = data;
-            currentBoard = jsonData[rounds[currentRound]];
-            loadBoard();
+    $('#game-load-modal').modal('show');
+    $('#game-load-input-button').click(function(){
+        var file = $('#input-file').prop('files')[0];
+        if ($('#input-file').val() != '') {
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(){
+                var fileText = reader.result;
+                var data = $.parseJSON(fileText);
+                jsonData = data;
+                currentBoard = jsonData[rounds[currentRound]];
+                loadBoard();
+                $('#game-load-modal').modal('hide');
+            }
+            reader.onerror = function(e){
+                $('#game-load-error').text("Error: "+ e).show();
+            };
+
         }
     });
+
     $('#next-round').click(function(){
         currentRound++;
         if (currentRound >= rounds.length - 2) { // Will work out Final Jeopardy in future
@@ -63,6 +72,7 @@ var score_player_3 = 0;
 var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
 var currentBoard;
 var currentRound = 0;
+var gameDataFile;
 
 function adjustScores(){
     $('#score-adjust-save').click(function(){
