@@ -24,3 +24,30 @@
 	text-align: center;
 	color: white;
 }
+
+.well {
+	background-image: none;
+	background-color: navy;
+	padding: 3px;
+	color: gold;
+	font-size: 48px;
+}
+
+.modal-content {
+	background-color: navy;
+	color: white;
+}
+
+body {
+	background-color: navy;
+	color: white;
+}
+
+.panel-footer {
+	background-color: navy;
+	color: white;
+}
+
+#daily-double-modal .modal-footer {
+	text-align: center;
+}

@@ -43,18 +43,18 @@
       <div class="clearfix"></div>
     </div>
 
-    <div class="col-md-3" id="score-adjust-div">
-      <button type="button" class="btn btn-info" id="score-adjust">Adjust Scores</button>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-info" id="score-adjust">Adjust Scores</button>
+
+        <button type="button" class="btn btn-info pull-right" id="next-round">Go to next round</button>
+      <div class="clearfix"></div>
     </div>
 
-    <div>
-      <button type="button" class="btn btn-info" id="next-round">Go to next round</button>
-    </div>
   </div>
 
   <div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <div class="modal-dialog" id="question-modal-dialog">
+      <div class="modal-content" id="question-modal-content">
         <div class="modal-header">
           <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
 
@@ -228,6 +228,37 @@
 
       </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="daily-double-modal" role="dialog" aria-labelledby="daily-double-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" id="daily-double-modal-dialog">
+      <div class="modal-content" id="daily-double-modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center" id="daily-double-modal-title">Modal title</h4>
+        </div>
+
+        <div class="modal-body">
+          <h1 class="text-center">DAILY DOUBLE!</h1>
+        </div>
+
+        <div id="adjust-score-input-div" class="modal-body text-center col-md-4 col-md-offset-4">
+          <input type="text" class="form-control" placeholder="Daily Double Wager" id="daily-double-wager-input" />
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="daily-double-wager">
+            Make Wager
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+
+
   </div>
 
 </body>

@@ -10,7 +10,7 @@
                 },
                 {
                     "answer": "Who is Mike Tyson?",
-                    "question": "ORIGINALLY, THE NES VERSION OF PUNCH-OUT!! FEATURED THIS REAL-LIFE BOXER \u2028AS THE END BOSS",
+                    "question": "ORIGINALLY, THE NES VERSION OF PUNCH-OUT!! FEATURED THIS REAL-LIFE BOXER AS THE END BOSS",
                     "value": 400
                 },
                 {
@@ -45,12 +45,12 @@
                 },
                 {
                     "answer": "Who is Pepper Potts?",
-                    "question": "SHE\u2019S NOT JUST TONY STARK\u2019S ASSISTANT - SHE ALSO SUITS UP AS THE ARMORED HERO CALLED RESCUE",
+                    "question": "SHE'S NOT JUST TONY STARK'S ASSISTANT - SHE ALSO SUITS UP AS THE ARMORED HERO CALLED RESCUE",
                     "value": 600
                 },
                 {
                     "answer": "Who is Guy Gardner?",
-                    "question": "THIS EGOTIST WOULD HAVE BEEN GREEN LANTERN \u2028IF THE RING \u2028HADN\u2019T CHOSEN \u2028HAL JORDAN FIRST",
+                    "question": "THIS EGOTIST WOULD HAVE BEEN GREEN LANTERN IF THE RING HADN'T CHOSEN HAL JORDAN FIRST",
                     "value": 800
                 },
                 {
@@ -79,7 +79,8 @@
                     "answer": "What is Deadpool?",
                     "image": "deadpool.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
-                    "value": 600
+                    "value": 600,
+                    "daily-double": true
                 },
                 {
                     "answer": "What is Spawn?",
@@ -100,12 +101,12 @@
             "questions": [
                 {
                     "answer": "Who is Sam Raimi?",
-                    "question": "BRUCE\u2019S FIRST FILM WITH THIS DIRECTOR WAS THE 1977 SHORT \"IT\u2019S MURDER\"",
+                    "question": "BRUCE'S FIRST FILM WITH THIS DIRECTOR WAS THE 1977 SHORT \"IT'S MURDER\"",
                     "value": 200
                 },
                 {
                     "answer": "Who is Elvis Presley?",
-                    "question": "IN BUBBA HO-TEP, CAMPBELL FIGHTS \u2028A MUMMY AS A GERIATRIC VERSION OF THIS ROCK \u2028MUSIC LEGEND",
+                    "question": "IN BUBBA HO-TEP, CAMPBELL FIGHTS A MUMMY AS A GERIATRIC VERSION OF THIS ROCK MUSIC LEGEND",
                     "value": 400
                 },
                 {
@@ -160,7 +161,7 @@
             "questions": [
                 {
                     "answer": "What is Modern Warfare 2?",
-                    "question": "CONTRARY TO REPORTS, THIS 2009 INFINITY WARD SHOOTER WAS NOT BANNED IN RUSSIA \u2013 BUT THE AIRPORT LEVEL WAS REMOVED",
+                    "question": "CONTRARY TO REPORTS, THIS 2009 INFINITY WARD SHOOTER WAS NOT BANNED IN RUSSIA - BUT THE AIRPORT LEVEL WAS REMOVED",
                     "value": 200
                 },
                 {
@@ -170,13 +171,14 @@
                 },
                 {
                     "answer": "Who is Jimmy Olson?",
-                    "question": "AS \"SUPERMAN\u2019S PAL,\" THIS DC COMICS PHOTOJOURNALIST HAD HIS OWN COMIC FROM 1954 TO 1974",
+                    "question": "AS \"SUPERMAN'S PAL,\" THIS DC COMICS PHOTOJOURNALIST HAD HIS OWN COMIC FROM 1954 TO 1974",
                     "value": 600
                 },
                 {
                     "answer": "What is Adventure Time?",
                     "question": "THE 3DS GAME BASED ON THIS ANIMATED SERIES IS SUBTITLED \"HEY ICE KING! WHY'D YOU STEAL OUR GARBAGE?!\"",
-                    "value": 800
+                    "value": 800,
+                    "daily-double": true
                 },
                 {
                     "answer": "What is Pac-Man Fever?",
@@ -197,7 +199,7 @@
             "questions": [
                 {
                     "answer": "Who is Optimus Prime?",
-                    "question": "SPOILER ALERT: HIS DYING WORDS IN THE ANIMATED TRANSFORMERS MOVIE ARE \u2028\"TIL ALL ARE ONE\"",
+                    "question": "SPOILER ALERT: HIS DYING WORDS IN THE ANIMATED TRANSFORMERS MOVIE ARE \"TIL ALL ARE ONE\"",
                     "value": 100
                 },
                 {
@@ -262,13 +264,14 @@
                 },
                 {
                     "answer": "Who is Lando Calrissian?",
-                    "question": "\"WHY, YOU SLIMY, DOUBLE-CROSSING, NO-GOOD SWINDLER. YOU GOT A LOT OF GUTS COMING HERE, AFTER WHAT \u2028YOU PULLED\"",
+                    "question": "\"WHY, YOU SLIMY, DOUBLE-CROSSING, NO-GOOD SWINDLER. YOU GOT A LOT OF GUTS COMING HERE, AFTER WHAT YOU PULLED\"",
                     "value": 200
                 },
                 {
                     "answer": "Who is Tidus?",
                     "question": "\"LISTEN TO MY STORY. THIS MAY BE OUR LAST CHANCE.\"",
-                    "value": 300
+                    "value": 300,
+                    "daily-double": true
                 },
                 {
                     "answer": "Who is Princess Buttercup?",
@@ -277,7 +280,7 @@
                 },
                 {
                     "answer": "Who is Indiana Jones?",
-                    "question": "\"THIS IS IT. \u2028THIS IS WHERE FORRESTAL CASHED IN \u2028HIS CHIPS\"",
+                    "question": "\"THIS IS IT. THIS IS WHERE FORRESTAL CASHED IN HIS CHIPS\"",
                     "value": 500
                 }
             ]
@@ -307,7 +310,7 @@
                 },
                 {
                     "answer": "What is Turn Off the Dark?",
-                    "question": "THE SPIDER-MAN STAGE MUSICAL, \u2028NOW PLAYING \u2028ON BROADWAY, FEATURES THIS UNUSUAL SUBTITLE",
+                    "question": "THE SPIDER-MAN STAGE MUSICAL, NOW PLAYING ON BROADWAY, FEATURES THIS UNUSUAL SUBTITLE",
                     "value": 500
                 }
             ]
@@ -317,7 +320,7 @@
             "questions": [
                 {
                     "answer": "What is Umbrella?",
-                    "question": "YOU CAN BLAME THIS FICTIONAL COMPANY FOR RESIDENT EVIL'S \u2028T-VIRUS",
+                    "question": "YOU CAN BLAME THIS FICTIONAL COMPANY FOR RESIDENT EVIL'S T-VIRUS",
                     "value": 100
                 },
                 {
@@ -337,7 +340,7 @@
                 },
                 {
                     "answer": "What is Encom?",
-                    "question": "IN TRON, KEVIN FLYNN HACKS HIS WAY INTO THE NETWORK OF THIS FICTIONAL \u2028GAME PUBLISHER",
+                    "question": "IN TRON, KEVIN FLYNN HACKS HIS WAY INTO THE NETWORK OF THIS FICTIONAL GAME PUBLISHER",
                     "value": 500
                 }
             ]
@@ -357,7 +360,7 @@
                 },
                 {
                     "answer": "What is Divekick?",
-                    "question": "THIS TWO-BUTTON FIGHTING GAME STARS TWO \u2028GUYS NAMED \u2028KICK AND DIVE",
+                    "question": "THIS TWO-BUTTON FIGHTING GAME STARS TWO GUYS NAMED KICK AND DIVE",
                     "value": 300
                 },
                 {
@@ -367,7 +370,7 @@
                 },
                 {
                     "answer": "What is Sonic/Dankey Kang?",
-                    "question": "THIS VIDEO GAME CHARACTER \u2028IS BLUE, COLLECTS RINGS, \u2028AND GOES FAST",
+                    "question": "THIS VIDEO GAME CHARACTER IS BLUE, COLLECTS RINGS, AND GOES FAST",
                     "value": 500
                 }
             ]
