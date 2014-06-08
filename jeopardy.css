@@ -7,12 +7,14 @@
 }
 
 #main-board {
-	background-color: navy;
+	background-image: none;
+	background-color: black;
 }
 
 #main-board-categories{
 	background-image: none;
-	background-color: navy;
+	background-color: black;
+	border: none;
 	color: white;
 }
 
@@ -20,17 +22,42 @@
 	text-align: center;
 }
 
-#final-jeopardy-question {
-	text-align: center;
-	color: white;
+.category {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.category-title {
+	background-image: none;
+	border: none;
+	margin-bottom: 10px;
+
+
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+
+}
+
+.category-text {
+	font-size: 24px;
+	font-family: Helvetica;
+	font-weight: bold;
+
 }
 
 .well {
 	background-image: none;
 	background-color: navy;
+	border: none;
+	margin-bottom: 10px;
 	padding: 3px;
-	color: gold;
-	font-size: 48px;
+}
+
+.question {
+	color: goldenrod;
+	font-size: 60px;
+	font-family: Impact;	
 }
 
 .modal-content {
@@ -45,6 +72,13 @@ body {
 
 .panel-footer {
 	background-color: navy;
+	color: white;
+}
+
+.question-text {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 200%;
+	text-align: center;
 	color: white;
 }
 

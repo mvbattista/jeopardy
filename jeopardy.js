@@ -65,6 +65,7 @@ $(function(){
             $('#answer-show-button').show();
             $('#question-modal .score-button').prop('disabled', false);
             $('#question-modal .score-button').data('value', value);
+            $('#question-modal .score-button.btn-success').data('question', question).data('category', category);
 
         }
         $('#daily-double-wager').click(function(){
@@ -72,7 +73,7 @@ $(function(){
             if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue != '' ) {
                 value = parseInt(inputDailyDoubleValue);
                 $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
-                $('#question-modal .score-button').data('value', value);
+                $('#question-modal .score-button').data('value', value).data('question', question).data('category', category);
                 $('#daily-double-modal').modal('hide');            
 
                 $('#question').empty().text(currentBoard[category].questions[question].question);
@@ -87,6 +88,7 @@ $(function(){
                 $('#answer-close-button').hide().data('question', question).data('category', category);
                 $('#answer-show-button').show();
                 $('#question-modal .score-button').prop('disabled', false);
+                $('#question-modal .score-button.btn-success').data('question', question).data('category', category);
 
             }
         });
@@ -142,27 +144,29 @@ function loadBoard() {
     //function that turns the board.json (loaded in the the currentBoard variable) into a jeopardy board
     var board = $('#main-board');
     if (rounds[currentRound] === "final-jeopardy") {
-        $('.panel-heading').append('<div class="text-center col-md-6 col-md-offset-3"><h2>' + 
-            currentBoard['category'] + '</h2></div>');
-        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question">' + 
+        $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' + 
+            currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
+        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question" class="question-text">' + 
             currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' + 
-            '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>');
+            '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>').css('background-color', 'navy');
         $('#final-jeopardy-question').hide();
         $('#final-jeopardy-answer-button').hide();
     }
     else {
+        board.css('background-color', 'black');
         var columns = currentBoard.length;
 
         // Floor of width/12, for Bootstrap column width appropriate for the number of categories
         var column_width = parseInt(12/columns);
         $.each(currentBoard, function(i,category){
             // Category
-            var header_class = 'text-center col-md-' + column_width; 
+            var header_class = 'col-md-' + column_width; 
             if (i === 0 && columns % 2 != 0){ //if the number of columns is odd, offset the first one by one to center them
                 header_class += ' col-md-offset-1';
             }
-            $('.panel-heading').append('<div class="' + header_class 
-                + '"><h4>' + category.name + '</h4></div>');
+            $('#main-board-categories').append('<div class="category ' + header_class 
+                + '"><div class="text-center well"><div class="category-title category-text text-center">' + category.name
+                 + '</div></div><div class="clearfix"></div></div>').css('background-color', 'black');
             
             // Column
             var div_class = 'category col-md-' + column_width;
@@ -180,7 +184,10 @@ function loadBoard() {
             });
         });
     }
-    $('.panel-heading').append('<div class="clearfix"></div>')
+    $('#main-board-categories').append('<div class="clearfix"></div>');
+    var height = Math.max.apply(null, ($('.category-title').map(function(){return $(this).height();})));
+    var width = Math.max.apply(null, ($('.category-title').map(function(){return $(this).parent().width();})));
+    $('.category-title').height(height).width(width);
 
 }
 
@@ -207,7 +214,14 @@ function handleAnswer(){
 
         // Possible behavior of disabling all scoring after a right answer?
         if (buttonAction === 'right') {
+            var tile = $('div[data-category="' + $(this).data('category') + '"]>[data-question="' +
+                $(this).data('question') + '"]')[0];
+            console.log(tile);
             $('#question-modal .score-button').prop('disabled', true);
+
+            $(tile).empty().append('&nbsp;<div class="clearfix"></div>').removeClass('unanswered').unbind().css('cursor','not-allowed');
+            $('#question-modal').modal('hide');
+
         }
         updateScore();
     });
