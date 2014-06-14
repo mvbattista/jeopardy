@@ -61,7 +61,8 @@ $(function(){
             }
             $('#answer-text').text(answer).hide();
             $('#question-modal').modal('show');
-            $('#answer-close-button').hide().data('question', question).data('category', category);
+            //$('#answer-close-button').hide().data('question', question).data('category', category);
+            $('#answer-close-button').data('question', question).data('category', category);
             $('#answer-show-button').show();
             $('#question-modal .score-button').prop('disabled', false);
             $('#question-modal .score-button').data('value', value);
@@ -85,7 +86,8 @@ $(function(){
                 }
                 $('#answer-text').text(answer).hide();
                 $('#question-modal').modal('show');
-                $('#answer-close-button').hide().data('question', question).data('category', category);
+                //$('#answer-close-button').hide().data('question', question).data('category', category);
+                $('#answer-close-button').data('question', question).data('category', category);
                 $('#answer-show-button').show();
                 $('#question-modal .score-button').prop('disabled', false);
                 $('#question-modal .score-button.btn-success').data('question', question).data('category', category);
@@ -254,7 +256,7 @@ function handleAnswer(){
     $('#answer-show-button').click(function(){
         $(this).hide();
         $('#answer-text').show();
-        $('#answer-close-button').show();
+        //$('#answer-close-button').show();
     });
     $('#answer-close-button').click(function(){
         var tile = $('div[data-category="' + $(this).data('category') + '"]>[data-question="' +
