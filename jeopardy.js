@@ -123,7 +123,32 @@ var score_player_3 = 0;
 var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
 var currentBoard;
 var currentRound = 0;
+var isTimerActive = false;
+var timerMaxCount = 6;
+var timerObject;
+var timerCount;
 var gameDataFile;
+
+function runTimer() {
+    timerObject = setTimeout(function(){
+        timerCount++;
+        if (timerCount < timerMaxCount) {
+            $('.timer-set-' + timerCount).css('background-color', 'black');
+            runTimer();
+        }
+        else {
+            resetTimer();
+            // Doo doo doo
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    clearTimeout(timerObject);
+    isTimerActive = false;
+    timerCount = 0;
+    $('.timer-square').css('background-color', 'black');
+}
 
 function adjustScores(){
     $('#score-adjust-save').click(function(){
@@ -138,6 +163,12 @@ function adjustScores(){
         };
         updateScore();
     });
+}
+
+function updateScore(){
+    $('#player-1-score').empty().text(score_player_1);
+    $('#player-2-score').empty().text(score_player_2);
+    $('#player-3-score').empty().text(score_player_3);
 }
 
 function loadBoard() {
@@ -188,13 +219,6 @@ function loadBoard() {
     var height = Math.max.apply(null, ($('.category-title').map(function(){return $(this).height();})));
     var width = Math.max.apply(null, ($('.category-title').map(function(){return $(this).parent().width();})));
     $('.category-title').height(height).width(width);
-
-}
-
-function updateScore(){
-    $('#player-1-score').empty().text(score_player_1);
-    $('#player-2-score').empty().text(score_player_2);
-    $('#player-3-score').empty().text(score_player_3);
 }
 
 function handleAnswer(){
@@ -211,6 +235,7 @@ function handleAnswer(){
         $(this).prop('disabled', true);
         var otherButtonID = '#p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
         $(otherButtonID).prop('disabled', true);
+        resetTimer();
 
         // Possible behavior of disabling all scoring after a right answer?
         if (buttonAction === 'right') {
@@ -236,6 +261,20 @@ function handleAnswer(){
             $(this).data('question') + '"]')[0];
         $(tile).empty().append('&nbsp;<div class="clearfix"></div>').removeClass('unanswered').unbind().css('cursor','not-allowed');
         $('#question-modal').modal('hide');
+    });
+
+    $('#timer-grid').unbind("click").click(function(e){
+        e.stopPropagation();
+        if (isTimerActive) {
+            resetTimer();
+        }
+        else {
+            $('.timer-square').css('background-color', 'red');
+            isTimerActive = true;
+            timerCount = 0;
+            runTimer();
+        }
+        //isTimerActive = isTimerActive ? false : true;
     });
 }
 

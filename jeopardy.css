@@ -85,3 +85,23 @@ body {
 #daily-double-modal .modal-footer {
 	text-align: center;
 }
+
+#timer-grid {
+	display: block;
+	width: 90%;
+	height: 40px;
+	position: relative;
+	background-color: silver;
+	text-align: center;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.timer-square {
+	display: inline-block;
+	background-color: black; 
+	border: 1px solid #000; 
+	height: 30px;
+	width: 50px;
+	position: relative;
+}
