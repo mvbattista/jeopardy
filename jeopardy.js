@@ -1,5 +1,6 @@
 $(function(){
     $('#game-load-modal').modal('show');
+    openingTheme.play();
     $('#game-load-input-button').click(function(){
         var file = $('#input-file').prop('files')[0];
         if ($('#input-file').val() != '') {
@@ -11,6 +12,10 @@ $(function(){
                 jsonData = data;
                 currentBoard = jsonData[rounds[currentRound]];
                 loadBoard();
+                openingTheme.pause();
+                openingTheme.currentTime = 0;
+                var boardFillSound = new Audio('./sounds/board_fill.mp3');
+                boardFillSound.play();
                 $('#game-load-modal').modal('hide');
             }
             reader.onerror = function(e){
@@ -35,6 +40,13 @@ $(function(){
         $('#main-board').empty();
         loadBoard();
     });
+
+    $('#end-round').unbind('click').click(function(e){
+        e.stopPropagation();
+        var endRoundSound = new Audio('./sounds/end_of_round.mp3');
+        endRoundSound.play();
+        $('.unanswered').removeClass('unanswered').unbind().css('cursor','not-allowed');
+    });
     $(document).on('click', '.unanswered', function(){
         //event bound to clicking on a tile. it grabs the data from the click event, populates the modal, fires the modal, and binds the answer method
         var category = $(this).parent().data('category');
@@ -45,6 +57,8 @@ $(function(){
         var isDailyDouble = 'daily-double' in currentBoard[category].questions[question] ? true : false;
 
         if (isDailyDouble) {
+            var dailyDoubleSound = new Audio('./sounds/daily_double.mp3');
+            dailyDoubleSound.play();
             $('#daily-double-modal-title').empty().text(currentBoard[category].name + ' - $' + value);
             $('#daily-double-wager-input').val('');
             $('#daily-double-modal').modal('show');
@@ -86,6 +100,7 @@ $(function(){
                 }
                 $('#answer-text').text(answer).hide();
                 $('#question-modal').modal('show');
+                resizeAnswerModal();
                 //$('#answer-close-button').hide().data('question', question).data('category', category);
                 $('#answer-close-button').data('question', question).data('category', category);
                 $('#answer-show-button').show();
@@ -107,8 +122,18 @@ $(function(){
     $(document).on('click', '#final-jeopardy-question-button', function(){
         $(this).hide();
         $('#final-jeopardy-question').show();
-        $('#final-jeopardy-answer-button').show();
+        var revealSound = new Audio('./sounds/final_jeopardy.mp3');
+        revealSound.play();
+        $('#final-jeopardy-music-button').show();
         // console.log('30 seconds, good luck'); Cue music
+    });
+    $(document).on('click', '#final-jeopardy-music-button',function(){
+        $(this).hide();
+        var thinkMusicSound = new Audio('./sounds/think_music.mp3');
+        thinkMusicSound.play();        
+        setTimeout(function(){
+            $('#final-jeopardy-answer-button').show();
+        }, 30000);
     });
     $(document).on('click', '#final-jeopardy-answer-button',function(){
         $(this).hide();
@@ -126,21 +151,25 @@ var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
 var currentBoard;
 var currentRound = 0;
 var isTimerActive = false;
-var timerMaxCount = 6;
+var timerMaxCount = 5;
 var timerObject;
 var timerCount;
 var gameDataFile;
+var openingTheme = new Audio('./sounds/theme.mp3');
+
 
 function runTimer() {
     timerObject = setTimeout(function(){
         timerCount++;
+        $('.timer-set-' + timerCount).css('background-color', 'black');
         if (timerCount < timerMaxCount) {
-            $('.timer-set-' + timerCount).css('background-color', 'black');
             runTimer();
         }
         else {
+            var timeUpAudio = new Audio('./sounds/time_up.mp3')
+            timeUpAudio.play();
+            // Doo doo doo   
             resetTimer();
-            // Doo doo doo
         }
     }, 1000);
 }
@@ -177,15 +206,19 @@ function loadBoard() {
     //function that turns the board.json (loaded in the the currentBoard variable) into a jeopardy board
     var board = $('#main-board');
     if (rounds[currentRound] === "final-jeopardy") {
+        $('#end-round').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' + 
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
         board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question" class="question-text">' + 
             currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' + 
+            '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' + 
             '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>').css('background-color', 'navy');
         $('#final-jeopardy-question').hide();
+        $('#final-jeopardy-music-button').hide();
         $('#final-jeopardy-answer-button').hide();
     }
     else {
+        $('#end-round').show();
         board.css('background-color', 'black');
         var columns = currentBoard.length;
 
@@ -218,9 +251,28 @@ function loadBoard() {
         });
     }
     $('#main-board-categories').append('<div class="clearfix"></div>');
-    var height = Math.max.apply(null, ($('.category-title').map(function(){return $(this).height();})));
+    var textHeight = Math.max.apply(null, ($('.category-title').map(function(){return $(this).height();})));
     var width = Math.max.apply(null, ($('.category-title').map(function(){return $(this).parent().width();})));
+    // If possible to keep aspect ratio, switch to it.
+    //var aspectRatioHeight = width * .75;
+    var aspectRatioHeight = width * (9 / 16);
+    var height = Math.max(textHeight, aspectRatioHeight);
     $('.category-title').height(height).width(width);
+
+    /*
+    var questionTextHeight = Math.max.apply(null, ($('.question').map(function(){return $(this).height();})));
+    var questionWidth = Math.max.apply(null, ($('.question').map(function(){return $(this).parent().width();})));
+    var questionAspectRatioHeight = questionWidth * (9/16);
+    var questionFinalHeight = Math.max(questionTextHeight, questionAspectRatioHeight);
+    $('.question').height(questionFinalHeight);
+    */
+}
+
+function resizeAnswerModal() {
+    var otherHeights = ($('#question-modal-content .modal-header, #question-modal-content .modal-footer').map(function(){return $(this).height();}));
+    var totalModalHeight = $('#question-modal-content').height();
+    for(var i in otherHeights) { totalModalHeight -= otherHeights[i]; }
+    $('#question-modal-content .modal-body').height(totalModalHeight);
 }
 
 function handleAnswer(){
@@ -256,6 +308,7 @@ function handleAnswer(){
     $('#answer-show-button').click(function(){
         $(this).hide();
         $('#answer-text').show();
+        resizeAnswerModal();
         //$('#answer-close-button').show();
     });
     $('#answer-close-button').click(function(){

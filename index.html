@@ -47,6 +47,7 @@
         <button type="button" class="btn btn-info" id="score-adjust">Adjust Scores</button>
 
         <button type="button" class="btn btn-info pull-right" id="next-round">Go to next round</button>
+        <button type="button" class="btn btn-info pull-right" id="end-round">End Round</button>
       <div class="clearfix"></div>
     </div>
 
@@ -61,7 +62,7 @@
           <h4 class="modal-title text-center category-text" id="modal-answer-title">Modal title</h4>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" id="question-modal-body">
           <p id="question" class="question-text text-center"></p>
 
           <div id="question-image" class="text-center"></div>
@@ -161,10 +162,13 @@
   </div>
 
   <div class="modal fade" id="game-load-modal" role="dialog" aria-labelledby="game-load-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="game-load-modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title text-center">Please select a game file to upload</h4>
+        </div>
+        <div class="modal-body text-center" id="game-load-logo-div">
+          <img src="./jeopardy_logo.jpg" id="game-load-logo-img">
         </div>
         <div class="modal-body text-center" id="game-load-input-div">
           <input type="file" id="input-file">

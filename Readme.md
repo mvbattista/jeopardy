@@ -16,11 +16,11 @@ Host on a website. Images should be located on the host server but referenced in
 
 ## TODO
 
-- Add sounds for time up, final jeopardy, and daily double 
+- Whatever Dan wants at this point.
 
 ## Contributors
 
-Special thanks to Dam Amrich for giving the blessing to work on this project.
+Special thanks to Dan Amrich for giving the blessing to work on this project.
 
 Thanks to Ryan McDevitt for posting a general framework to base improvements on.
 
