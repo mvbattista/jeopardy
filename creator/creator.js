@@ -1,29 +1,39 @@
 var app = angular.module('jeopardy',[]);
     app.controller('MainCtrl', function($scope){
-        $scope.board = [];
+        $scope.main = {};
+        
+        $scope.board = {
+          "jeopardy": [
+          ],
+          "double-jeopardy": [
+          ],
+          "final-jeopardy": {
+              "answer": "",
+              "category": "",
+              "question": ""
+          },
+        };
+        
         $scope.load = function(){
             $scope.board = JSON.parse($scope.pre);
         };
-        $scope.addCategory = function(){
-            $scope.board.push({
-                name:$scope.categoryName,
+        $scope.addCategory = function(round){
+            round.push({
+                name:"Category",
                 questions:[]
             });
-            $scope.categoryName = "";
         };
         $scope.addQuestion = function(category){
             category.questions.push({
-                question:$scope.questionText,
+                question:"WHAT ALEX SAYS",
                 value:0,
-                answers:[]
+                answer:"What is a ...?"
             });
-            $scope.questionText = "";
         };
-        $scope.addAnswer = function(question){
-            question.answers.push({
-                text:$scope.answerText,
-                correct:false
-            });
-            $scope.answerText = "";
+        $scope.addImage = function(question) {
+          question.image = "";          
+        };
+        $scope.removeImage = function(question) {
+          delete question.image;          
         };
     });
