@@ -1,11 +1,11 @@
 var app = angular.module('jeopardy',[]);
     app.controller('MainCtrl', function($scope){
-        $scope.game = { "jeopardy":[], "double-jeopardy":[], "final-jeopardy":{} };
+        $scope.board = [];
         $scope.load = function(){
-            $scope.game = JSON.parse($scope.pre);
+            $scope.board = JSON.parse($scope.pre);
         };
         $scope.addCategory = function(){
-            $scope.game.push({
+            $scope.board.push({
                 name:$scope.categoryName,
                 questions:[]
             });

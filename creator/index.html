@@ -12,10 +12,10 @@
 <body data-ng-controller="MainCtrl">
     <div class="container">
         <div class="page-header">
-            <h1>Game Creator</h1>
+            <h1>Board Creator</h1>
         </div>
         <h2>Categories:</h2>
-        <div class="panel panel-default" data-ng-repeat="category in game">
+        <div class="panel panel-default" data-ng-repeat="category in board">
             <div class="panel-heading"><input type="text" data-ng-model="category.name"></div>
             <div class="panel-body">
                 <h4>Questions</h4>
@@ -50,9 +50,9 @@
     <div class="container">
         <h3>Output</h3>
             <pre>
-            {{game}}
+            {{board}}
         </pre>
-        <textarea data-ng-model="pre" style="width: 100%">{{game}}</textarea>
+        <textarea data-ng-model="pre" style="width: 100%">{{board}}</textarea>
         <button class="btn" data-ng-click="load()">Load</button>
     </div>
 </body>
