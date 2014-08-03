@@ -1,92 +1,77 @@
 <!doctype html>
-<html data-ng-app="jeopardy">
+<html ng-app="jeopardy-creator">
 <head>
 
 
-<!--	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.min.css" />
 
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-  <script type="text/javascript" language="Javascript" src="./creator.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script type="text/javascript" language="Javascript" src="./creator.js"></script>
 </head>
-<body data-ng-controller="MainCtrl">
+<body ng-controller="CreatorCtrl">
     <div class="container">
         <div class="page-header">
             <h1>Board Creator</h1>
         </div>
 
-        <div data-ng-repeat="round in ['jeopardy', 'double-jeopardy']">
+        <div ng-repeat="round in ['jeopardy', 'double-jeopardy']">
           <h1>{{round}}</h1>
           <h2>Categories:</h2>
-          <div class="panel panel-default" data-ng-repeat="category in board[round]">
-              <div class="panel-heading"><input type="text" data-ng-model="category.name"></div>
+          <div class="panel panel-default" ng-repeat="category in board[round]">
+              <div class="panel-heading"><input type="text" ng-model="category.name" style="width:100%"></div>
               <div class="panel-body">
                   <h4>Questions</h4>
-                  <div class="panel panel-default" data-ng-repeat="question in category.questions">
-                      <div class="panel-heading"><input type="text" data-ng-model="question.question" style="width:100%"></div>
+                  <div class="panel panel-default" ng-repeat="question in category.questions">
+                      <div class="panel-heading"><input type="text" ng-model="question.question" style="width:100%"></div>
                       <div class="panel-body">
                           <label for="value">Question Value</label>
-                          <input id="value" type="text" data-ng-model="question.value">
+                          <input id="value" type="text" ng-model="question.value">
                           <br>
                           <label for="answer">Answer</label>
-                          <input id="answer" type="text" data-ng-model="question.answer">
+                          <input id="answer" type="text" ng-model="question.answer" style="width: 50%">
                           <br>
                           <label for="dailyDouble">Daily Double?</label>
-                          <input id="dailyDouble" type="checkbox" data-ng-model="question['daily-double']">
+                          <input id="dailyDouble" type="checkbox" ng-model="question['daily-double']">
                           <br>
-                          <button class="btn" data-ng-click="addImage(question)" ng-show="question.image == null">Add Image</button>
+                          <button class="btn" ng-click="addImage(question)" ng-show="question.image == null">Add Image</button>
                           <div class="questionImage" ng-hide="question.image == null">
                             <label for="image">Image</label>
-                            <input id="image" type="text" data-ng-model="question.image">
-                            <button class="btn" data-ng-click="removeImage(question)">Remove Image</button>
+                            <input id="image" type="text" ng-model="question.image">
+                            <button class="btn" ng-click="removeImage(question)">Remove Image</button>
                           </div>
                       </div>
                   </div>
-                  <button class="btn" data-ng-click="addQuestion(category)">Add Question</button>
+                  <button class="btn" ng-click="addQuestion(category)" ng-show="category.questions.length < 5">Add Question</button>
               </div>
           </div>
-          <button class="btn" data-ng-click="addCategory(board[round])">Add Category</button>
+          <button class="btn" ng-click="addCategory(board[round])" ng-show="board[round].length < 6">Add Category</button>
         </div>
 
         <h1>final-jeopardy</h1>
-        <h2>Categories:</h2>
-        <div class="panel panel-default" data-ng-model="board['final-jeopardy']">
-            <div class="panel-heading"><input type="text" data-ng-model="category"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="text" ng-model="board['final-jeopardy'].category" style="width: 100%">
+            </div>
             <div class="panel-body">
-                <h4>Questions</h4>
-                <div class="panel panel-default" data-ng-repeat="question in category.questions">
-                    <div class="panel-heading"><input type="text" data-ng-model="question.question" style="width:100%"></div>
+                <h4>Question</h4>
+                <div class="panel panel-default">
+                      <div class="panel-heading"><input type="text" ng-model="board['final-jeopardy'].question" style="width:100%"></div>
                     <div class="panel-body">
-                        <label for="value">Question Value</label>
-                        <input id="value" type="text" data-ng-model="question.value">
-                        <br>
                         <label for="answer">Answer</label>
-                        <input id="answer" type="text" data-ng-model="question.answer">
-                        <br>
-                        <label for="dailyDouble">Daily Double?</label>
-                        <input id="dailyDouble" type="checkbox" data-ng-model="question['daily-double']">
-                        <br>
-                        <button class="btn" data-ng-click="addImage(question)" ng-show="question.image == null">Add Image</button>
-                        <div class="questionImage" ng-hide="question.image == null">
-                          <label for="image">Image</label>
-                          <input id="image" type="text" data-ng-model="question.image">
-                          <button class="btn" data-ng-click="removeImage(question)">Remove Image</button>
-                        </div>
+                        <input id="answer" type="text" ng-model="board['final-jeopardy'].answer" style="width: 50%">
                     </div>
                 </div>
-                <button class="btn" data-ng-click="addQuestion(category)">Add Question</button>
             </div>
         </div>
-        <button class="btn" data-ng-click="addCategory(board[round])">Add Category</button>
 
     </div>
     <div class="container">
         <h3>Output</h3>
             <pre>
-            {{board | json}}
+{{board | json}}
         </pre>
-        <textarea data-ng-model="pre" style="width: 100%">{{board}}</textarea>
-        <button class="btn" data-ng-click="load()">Load</button>
+        <textarea ng-model="pre" style="width: 100%">{{board}}</textarea>
+        <button class="btn" ng-click="load()">Load</button>
     </div>
 </body>
 </html>
