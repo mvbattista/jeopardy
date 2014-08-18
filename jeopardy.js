@@ -54,7 +54,8 @@ $(function(){
         var answer = currentBoard[category].questions[question].answer;
         var value = currentBoard[category].questions[question].value;
         var questionImage = currentBoard[category].questions[question].image;
-        var isDailyDouble = 'daily-double' in currentBoard[category].questions[question] ? true : false;
+        var isDailyDouble = 'daily-double' in currentBoard[category].questions[question] ? 
+            currentBoard[category].questions[question]['daily-double'] : false;
 
         if (isDailyDouble) {
             var dailyDoubleSound = new Audio('./sounds/daily_double.mp3');
