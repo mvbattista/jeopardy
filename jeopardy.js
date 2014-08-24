@@ -76,6 +76,7 @@ $(function(){
             }
             $('#answer-text').text(answer).hide();
             $('#question-modal').modal('show');
+            //resizeAnswerModal();
             //$('#answer-close-button').hide().data('question', question).data('category', category);
             $('#answer-close-button').data('question', question).data('category', category);
             $('#answer-show-button').show();
@@ -101,7 +102,7 @@ $(function(){
                 }
                 $('#answer-text').text(answer).hide();
                 $('#question-modal').modal('show');
-                resizeAnswerModal();
+                //resizeAnswerModal();
                 //$('#answer-close-button').hide().data('question', question).data('category', category);
                 $('#answer-close-button').data('question', question).data('category', category);
                 $('#answer-show-button').show();
@@ -110,7 +111,10 @@ $(function(){
 
             }
         });
-
+		//$('#question-modal').on('loaded.bs.modal', resizeAnswerModal());
+		$('#question-modal').on('shown.bs.modal', function (e) {
+		  resizeAnswerModal();
+		})
         handleAnswer();
     });
     $('#score-adjust').click(function(){
@@ -270,10 +274,10 @@ function loadBoard() {
 }
 
 function resizeAnswerModal() {
-    var otherHeights = ($('#question-modal-content .modal-header, #question-modal-content .modal-footer').map(function(){return $(this).height();}));
+    var otherHeights = ($('#question-modal-content .modal-header, #question-modal-content .modal-footer').map(function(){return $(this).outerHeight();}));
     var totalModalHeight = $('#question-modal-content').height();
-    for(var i in otherHeights) { totalModalHeight -= otherHeights[i]; }
-    $('#question-modal-content .modal-body').height(totalModalHeight);
+    for(var i=0; i < otherHeights.length; i++) { totalModalHeight -= otherHeights[i]; }
+    $('#question-modal-content .modal-body').outerHeight(totalModalHeight);
 }
 
 function handleAnswer(){
