@@ -277,7 +277,10 @@ function resizeAnswerModal() {
     var otherHeights = ($('#question-modal-content .modal-header, #question-modal-content .modal-footer').map(function(){return $(this).outerHeight();}));
     var totalModalHeight = $('#question-modal-content').height();
     for(var i=0; i < otherHeights.length; i++) { totalModalHeight -= otherHeights[i]; }
-    $('#question-modal-content .modal-body').outerHeight(totalModalHeight);
+    var modalBodyObj = $('#question-modal-content .modal-body');
+    var modalBodyPadding = modalBodyObj.innerHeight() - modalBodyObj.height();
+    //modalBodyObj.outerHeight(totalModalHeight);
+    modalBodyObj.css('height',(totalModalHeight - modalBodyPadding)); // Adjust again for padding
 }
 
 function handleAnswer(){
