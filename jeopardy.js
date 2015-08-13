@@ -143,6 +143,7 @@ $(function(){
     $(document).on('click', '#final-jeopardy-answer-button',function(){
         $(this).hide();
         $('#final-jeopardy-modal-answer').text(currentBoard['answer']);
+        $('#final-jeopardy-modal-answer').hide();
         $('#final-jeopardy-modal').modal('show');
         handleFinalAnswer();
     });
@@ -202,9 +203,22 @@ function adjustScores(){
 }
 
 function updateScore(){
-    $('#player-1-score').empty().text(score_player_1);
-    $('#player-2-score').empty().text(score_player_2);
-    $('#player-3-score').empty().text(score_player_3);
+	var score_text = '';
+	score_player_1 < 0 ? score_text = '-$' + Math.abs(score_player_1).toString() : score_text = "$" + score_player_1.toString();
+	score_player_1 < 0 ? $('#player-1-score').css('color', 'red') : $('#player-1-score').css('color', 'white');
+    $('#player-1-score').empty().text(score_text);
+
+	score_player_2 < 0 ? score_text = '-$' + Math.abs(score_player_2).toString() : score_text = "$" + score_player_2.toString();
+	score_player_2 < 0 ? $('#player-2-score').css('color', 'red') : $('#player-2-score').css('color', 'white');
+    $('#player-2-score').empty().text(score_text);
+
+	score_player_3 < 0 ? score_text = '-$' + Math.abs(score_player_3).toString() : score_text = "$" + score_player_3.toString();
+	score_player_3 < 0 ? $('#player-3-score').css('color', 'red') : $('#player-3-score').css('color', 'white');
+    $('#player-3-score').empty().text(score_text);
+
+	
+    //$('#player-2-score').empty().text(score_player_2);
+    //$('#player-3-score').empty().text(score_player_3);
 }
 
 function loadBoard() {
@@ -303,7 +317,7 @@ function handleAnswer(){
         if (buttonAction === 'right') {
             var tile = $('div[data-category="' + $(this).data('category') + '"]>[data-question="' +
                 $(this).data('question') + '"]')[0];
-            console.log(tile);
+            //console.log(tile);
             $('#question-modal .score-button').prop('disabled', true);
 
             $(tile).empty().append('&nbsp;<div class="clearfix"></div>').removeClass('unanswered').unbind().css('cursor','not-allowed');
@@ -362,4 +376,13 @@ function handleFinalAnswer(){
         updateScore();
 
     });
+    
+    
+    $('#final-answer-show-button').click(function(){
+        $(this).hide();
+        $('#final-jeopardy-modal-answer').show();
+        //resizeAnswerModal();
+        //$('#answer-close-button').show();
+    });
+
 }
