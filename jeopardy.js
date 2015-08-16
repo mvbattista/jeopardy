@@ -138,6 +138,7 @@ $(function(){
         $('#final-jeopardy-question').show();
         var revealSound = new Audio('./sounds/final_jeopardy.mp3');
         revealSound.play();
+        $('final-jeopardy-logo-img').hide();
         $('#final-jeopardy-music-button').show();
         // console.log('30 seconds, good luck'); Cue music
     });
@@ -240,7 +241,8 @@ function loadBoard() {
         $('#control-info').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' + 
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
-        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question" class="question-text">' + 
+        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
+        	'<h2 id="final-jeopardy-question" class="question-text">' + 
             currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' + 
             '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' + 
             '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>').css('background-color', 'navy');
