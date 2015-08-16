@@ -80,14 +80,20 @@ $(function(){
             //$('#answer-close-button').hide().data('question', question).data('category', category);
             $('#answer-close-button').data('question', question).data('category', category);
             $('#answer-show-button').show();
-            $('#question-modal .score-button').prop('disabled', false);
             $('#question-modal .score-button').data('value', value);
+            $('#question-modal .score-button').prop('disabled', false);
             $('#question-modal .score-button.btn-success').data('question', question).data('category', category);
 
         }
         $('#daily-double-wager').click(function(){
             var inputDailyDoubleValue = $('#daily-double-wager-input').val();
-            if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue != '' ) {
+            var maxRoundWager = Math.max.apply(Math, currentBoard[0]['questions'].map(function(o){return o.value}));
+            var scoreVariable = 'score_player_' + control;
+
+            //get max of maxRoundWager and controlling user score.
+            if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue != '' && parseInt(inputDailyDoubleValue) >= 5
+            	&& Math.max(maxRoundWager, window[scoreVariable]) >= parseInt(inputDailyDoubleValue) ) {
+	        
                 value = parseInt(inputDailyDoubleValue);
                 $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
                 $('#question-modal .score-button').data('value', value).data('question', question).data('category', category);
@@ -106,7 +112,9 @@ $(function(){
                 //$('#answer-close-button').hide().data('question', question).data('category', category);
                 $('#answer-close-button').data('question', question).data('category', category);
                 $('#answer-show-button').show();
-                $('#question-modal .score-button').prop('disabled', false);
+                $('#question-modal .score-button').prop('disabled', true);
+                $('#p' + control.toString() + '-wrong-button').prop('disabled', false);
+                $('#p' + control.toString() + '-right-button').prop('disabled', false);
                 $('#question-modal .score-button.btn-success').data('question', question).data('category', category);
 
             }
@@ -122,6 +130,7 @@ $(function(){
         $('#score-player-1-input').val(score_player_1);
         $('#score-player-2-input').val(score_player_2);
         $('#score-player-3-input').val(score_player_3);
+        $("input[name=control-input][value=" + control + "]").attr('checked', 'checked');
         adjustScores();
     });
     $(document).on('click', '#final-jeopardy-question-button', function(){
@@ -153,6 +162,7 @@ $(function(){
 var score_player_1 = 0;
 var score_player_2 = 0;
 var score_player_3 = 0;
+var control = 1;
 var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
 var currentBoard;
 var currentRound = 0;
@@ -196,8 +206,9 @@ function adjustScores(){
             if (!(isNaN(newScoreValue))) {
                 window[scoreVariableName] = parseInt(newScoreValue);
             }
-
         };
+		control = $("input[name=control-input]:checked").val();
+        
         updateScore();
     });
 }
@@ -216,7 +227,7 @@ function updateScore(){
 	score_player_3 < 0 ? $('#player-3-score').css('color', 'red') : $('#player-3-score').css('color', 'white');
     $('#player-3-score').empty().text(score_text);
 
-	
+	$('#control-player').empty().text(control);
     //$('#player-2-score').empty().text(score_player_2);
     //$('#player-3-score').empty().text(score_player_3);
 }
@@ -226,6 +237,7 @@ function loadBoard() {
     var board = $('#main-board');
     if (rounds[currentRound] === "final-jeopardy") {
         $('#end-round').hide();
+        $('#control-info').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' + 
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
         board.append('<div class="text-center col-md-6 col-md-offset-3"><h2 id="final-jeopardy-question" class="question-text">' + 
@@ -237,6 +249,18 @@ function loadBoard() {
         $('#final-jeopardy-answer-button').hide();
     }
     else {
+	    if (rounds[currentRound] === "double-jeopardy") {
+		    if (score_player_1 <= score_player_2 && score_player_1 <= score_player_3) {
+			    control = 1;
+		    }
+		    else if (score_player_2 <= score_player_3) {
+			    control = 2;
+		    }
+		    else {
+			    control = 3;
+		    }
+	    }
+        $('#control-player').empty().text(control);
         $('#end-round').show();
         board.css('background-color', 'black');
         var columns = currentBoard.length;
@@ -319,6 +343,7 @@ function handleAnswer(){
                 $(this).data('question') + '"]')[0];
             //console.log(tile);
             $('#question-modal .score-button').prop('disabled', true);
+            control = playerNumber;
 
             $(tile).empty().append('&nbsp;<div class="clearfix"></div>').removeClass('unanswered').unbind().css('cursor','not-allowed');
             $('#question-modal').modal('hide');
@@ -362,7 +387,7 @@ function handleFinalAnswer(){
         var buttonAction = buttonID.substr(9,5);
         var playerNumber = buttonID.charAt(7);
         var wagerID = '#wager-player-' + playerNumber + '-input';
-        var wager = parseInt($(wagerID).val());
+        var wager = $(wagerID).val() == '' ? 0 : parseInt($(wagerID).val());
         var scoreVariable = 'score_player_' + playerNumber;
         var otherButtonID = '#final-p' + playerNumber + '-' + 
             (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
