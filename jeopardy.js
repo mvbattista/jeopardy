@@ -54,7 +54,7 @@ $(function(){
         var answer = currentBoard[category].questions[question].answer;
         var value = currentBoard[category].questions[question].value;
         var questionImage = currentBoard[category].questions[question].image;
-        var isDailyDouble = 'daily-double' in currentBoard[category].questions[question] ? 
+        var isDailyDouble = 'daily-double' in currentBoard[category].questions[question] ?
             currentBoard[category].questions[question]['daily-double'] : false;
 
         if (isDailyDouble) {
@@ -65,7 +65,7 @@ $(function(){
             $('#daily-double-modal').modal('show');
         }
         else {
-            // Candidate for refactoring. 
+            // Candidate for refactoring.
             $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
             $('#question').empty().text(currentBoard[category].questions[question].question);
             if (questionImage){
@@ -93,11 +93,11 @@ $(function(){
             //get max of maxRoundWager and controlling user score.
             if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue != '' && parseInt(inputDailyDoubleValue) >= 5
             	&& Math.max(maxRoundWager, window[scoreVariable]) >= parseInt(inputDailyDoubleValue) ) {
-	        
+
                 value = parseInt(inputDailyDoubleValue);
                 $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
                 $('#question-modal .score-button').data('value', value).data('question', question).data('category', category);
-                $('#daily-double-modal').modal('hide');            
+                $('#daily-double-modal').modal('hide');
 
                 $('#question').empty().text(currentBoard[category].questions[question].question);
                 if (questionImage){
@@ -145,7 +145,7 @@ $(function(){
     $(document).on('click', '#final-jeopardy-music-button',function(){
         $(this).hide();
         var thinkMusicSound = new Audio('./sounds/think_music.mp3');
-        thinkMusicSound.play();        
+        thinkMusicSound.play();
         setTimeout(function(){
             $('#final-jeopardy-answer-button').show();
         }, 30000);
@@ -174,7 +174,7 @@ var score_player_2 = 0;
 var score_player_3 = 0;
 var control = 1;
 var rounds = ['jeopardy', 'double-jeopardy', 'final-jeopardy'];
-var playerTranslation = {1: 'Green', 2: 'Blue', 3: 'Red'}
+var playerTranslation = {1: 'Red', 2: 'Blue', 3: 'Green'}
 var currentBoard;
 var currentRound = 0;
 var isTimerActive = false;
@@ -195,7 +195,7 @@ function runTimer() {
         else {
             var timeUpAudio = new Audio('./sounds/time_up.mp3')
             timeUpAudio.play();
-            // Doo doo doo   
+            // Doo doo doo
             resetTimer();
         }
     }, 1000);
@@ -219,7 +219,7 @@ function adjustScores(){
             }
         };
 		control = $("input[name=control-input]:checked").val();
-        
+
         updateScore();
     });
 }
@@ -249,12 +249,12 @@ function loadBoard() {
     if (rounds[currentRound] === "final-jeopardy") {
         $('#end-round').hide();
         $('#control-info').hide();
-        $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' + 
+        $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' +
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
         board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
-        	'<h2 id="final-jeopardy-question" class="question-text">' + 
-            currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' + 
-            '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' + 
+        	'<h2 id="final-jeopardy-question" class="question-text">' +
+            currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' +
+            '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' +
             '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>').css('background-color', 'navy');
         $('#final-jeopardy-question').hide();
         $('#final-jeopardy-music-button').hide();
@@ -281,26 +281,26 @@ function loadBoard() {
         var column_width = parseInt(12/columns);
         $.each(currentBoard, function(i,category){
             // Category
-            var header_class = 'col-md-' + column_width; 
+            var header_class = 'col-md-' + column_width;
             if (i === 0 && columns % 2 != 0){ //if the number of columns is odd, offset the first one by one to center them
                 header_class += ' col-md-offset-1';
             }
-            $('#main-board-categories').append('<div class="category ' + header_class 
+            $('#main-board-categories').append('<div class="category ' + header_class
                 + '"><div class="text-center well"><div class="category-title category-text text-center">' + category.name
                  + '</div></div><div class="clearfix"></div></div>').css('background-color', 'black');
-            
+
             // Column
             var div_class = 'category col-md-' + column_width;
             if (i === 0 && columns % 2 != 0){
                 div_class += ' col-md-offset-1';
             }
-            board.append('<div class="' + div_class + '" id="cat-' + 
+            board.append('<div class="' + div_class + '" id="cat-' +
                 i + '" data-category="' + i + '"></div>');
             var column = $('#cat-'+i);
-            
+
             $.each(category.questions, function(n,question){
                 // Questions
-                column.append('<div class="well question unanswered text-center" data-question="' + 
+                column.append('<div class="well question unanswered text-center" data-question="' +
                     n + '">$' + question.value + '</div>');
             });
         });
@@ -331,7 +331,7 @@ function resizeAnswerModal() {
     var modalBodyPadding = modalBodyObj.innerHeight() - modalBodyObj.height();
     //modalBodyObj.outerHeight(totalModalHeight);
     modalBodyObj.css('height',(totalModalHeight - modalBodyPadding)); // Adjust again for padding
-    
+
     questionCenterPadding = ($('#question-modal-body').height() - ($('#question-image').height() + $('#question').height()))/2;
     $('#question').css('padding-top', questionCenterPadding);
 
@@ -346,7 +346,7 @@ function handleAnswer(){
         var playerNumber = buttonID.charAt(1);
         var scoreVariable = 'score_player_' + playerNumber;
 
-        buttonAction === 'right' ? window[scoreVariable] += answerValue 
+        buttonAction === 'right' ? window[scoreVariable] += answerValue
             : window[scoreVariable] -= answerValue;
         $(this).prop('disabled', true);
         var otherButtonID = '#p' + playerNumber + '-' + (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
@@ -367,7 +367,7 @@ function handleAnswer(){
         }
         updateScore();
     });
-    
+
     $('#answer-show-button').click(function(){
         $(this).hide();
         $('#answer-text').show();
@@ -405,7 +405,7 @@ function handleFinalAnswer(){
         var wagerID = '#wager-player-' + playerNumber + '-input';
         var wager = $(wagerID).val() == '' ? 0 : parseInt($(wagerID).val());
         var scoreVariable = 'score_player_' + playerNumber;
-        var otherButtonID = '#final-p' + playerNumber + '-' + 
+        var otherButtonID = '#final-p' + playerNumber + '-' +
             (buttonAction === 'right' ? 'wrong' : 'right') + '-button';
 
         buttonAction === 'right' ? window[scoreVariable] += wager : window[scoreVariable] -= wager;
@@ -417,8 +417,8 @@ function handleFinalAnswer(){
         updateScore();
 
     });
-    
-    
+
+
     $('#final-answer-show-button').click(function(){
         $(this).hide();
         $('#final-jeopardy-modal-answer').show();
