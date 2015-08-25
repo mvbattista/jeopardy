@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- Latest compiled and minified CSS -->
+    <!-- Dynamic copy
+  <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css" />
+    -->
+    <!-- Static copy -->
+  <link rel="stylesheet" type="text/css" href="./bootstrap-static/3.3.5/css/bootstrap.min.css" />
+
+  <!-- Optional theme -->
+    <!-- Dynamic copy
+  <link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap-theme.min.css" />
+    -->
+    <!-- Static copy -->
+  <link rel="stylesheet" type="text/css" href="./bootstrap-static/3.3.5/css/bootstrap-theme.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="./jeopardy.css" />
+
+  <!-- Latest compiled and minified jQuery -->
+    <!-- Dynamic copy
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    -->
+    <!-- Static copy -->
+  <script type="text/javascript" src="./jquery-latest.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+    <!-- Dynamic copy
+  <script type="text/javascript" language="Javascript" src="./bootstrap/dist/js/bootstrap.min.js"></script>
+    -->
+    <!-- Static copy -->
+  <script type="text/javascript" language="Javascript" src="./bootstrap-static/3.3.5/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" language="Javascript" src="./jeopardy-host.js"></script>
+
+  <title>HTML Jeopardy</title>
+</head>
+
+<body>
+  <div class="panel panel-default">
+    <div class="panel-heading" id="main-board-categories"></div>
+
+    <div class="panel-body" id="main-board"></div>
+
+    <div class="panel-footer">
+      <div class="col-md-4" id="player-1-score-div">
+        <h4>Red: <span id="player-1-score">$0</span></h4>
+      </div>
+
+      <div class="col-md-4" id="player-2-score-div">
+        <h4>Blue: <span id="player-2-score">$0</span></h4>
+      </div>
+
+      <div class="col-md-4" id="player-3-score-div">
+        <h4>Green: <span id="player-3-score">$0</span></h4>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="panel-footer">
+	    <div class="col-md-4">
+        	<button type="button" class="btn btn-info" id="score-adjust">Adjust Scores</button>
+	    </div>
+	    <div class="col-md-4 text-center">
+        	<h4 id="control-info">Control: <span id="control-player"></span></h4>
+	    </div>
+	    <div class="col-md-4">
+	        <button type="button" class="btn btn-info pull-right" id="next-round">Go to next round</button>
+			<button type="button" class="btn btn-info pull-right" id="end-round">End Round</button>
+	    </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="question-modal" role="dialog" aria-labelledby="question-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" id="question-modal-dialog">
+      <div class="modal-content" id="question-modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+
+          <h4 class="modal-title text-center category-text" id="modal-answer-title">Modal title</h4>
+        </div>
+
+        <div class="modal-body" id="question-modal-body">
+          <p id="question" class="question-text text-center"></p>
+
+          <div id="question-image" class="text-center"></div>
+        </div>
+
+        <div id="answer" class="text-center modal-footer">
+          <div id="answer-text" class="text-center"></div>
+
+          <div id="answer-buttons" class="text-center">
+            <button type="button" class="btn btn-primary" id="answer-show-button">Show</button> <button type="button" class="btn btn-primary" id="answer-close-button">Close</button>
+          </div>
+        </div><!-- /.answer -->
+
+        <div id="scoring-buttons" class="text-center modal-footer">
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger score-button" id="p1-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P1
+              </button> 
+              <button type="button" class="btn btn-success score-button" id="p1-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P1
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger score-button" id="p2-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P2
+              </button>
+              <button type="button" class="btn btn-success score-button" id="p2-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P2
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger score-button" id="p3-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P3
+              </button>
+              <button type="button" class="btn btn-success score-button" id="p3-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P3
+              </button>
+            </div>
+          </div>
+        </div><!-- /.scoring-buttons -->
+
+        <div id="question-timer" class="text-center modal-footer">
+          <div id="timer-grid" class="text-center">
+            <div class="timer-square timer-set-1"></div>
+            <div class="timer-square timer-set-2"></div>
+            <div class="timer-square timer-set-3"></div>
+            <div class="timer-square timer-set-4"></div>
+            <div class="timer-square timer-set-5"></div>
+            <div class="timer-square timer-set-4"></div>
+            <div class="timer-square timer-set-3"></div>
+            <div class="timer-square timer-set-2"></div>
+            <div class="timer-square timer-set-1"></div>
+          </div>
+        </div><!-- /.timer -->
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="score-adjust-modal" role="dialog" aria-labelledby="score-adjust-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Adjust Scores</h4>
+        </div>
+
+        <div id="adjust-score-input-div" class="modal-body text-center">
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 1 Score" id="score-player-1-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 2 Score" id="score-player-2-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Player 3 Score" id="score-player-3-input" />
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Adjust Control</h4>
+        </div>
+        <div id="adjust-control-input-div" class="modal-body text-center">
+          <div class="control-button-group col-md-4">
+            <label class="radio-inline"><input type="radio" placeholder="Player 1 Control" id="control-player-1-input" 
+            name="control-input" value="1"/></label>
+          </div>
+
+          <div class="control-button-group col-md-4">
+            <label class="radio-inline"><input type="radio" placeholder="Player 2 Control" id="control-player-2-input" 
+            name="control-input" value="2"/></label>
+          </div>
+
+          <div class="control-button-group col-md-4">
+            <label class="radio-inline"><input type="radio" placeholder="Player 3 Control" id="control-player-3-input" 
+            name="control-input" value="3"/></label>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="score-adjust-save">
+            Save and Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="game-load-modal" role="dialog" aria-labelledby="game-load-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" id="game-load-modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Please select a game file to upload</h4>
+        </div>
+        <div class="modal-body text-center" id="game-load-logo-div">
+          <img src="./jeopardy_logo.jpg" id="game-load-logo-img">
+        </div>
+        <div class="modal-body text-center" id="game-load-input-div">
+          <input type="file" id="input-file">
+          <button type="button" class="btn btn-primary" id="game-load-input-button">Load Game</button>
+        </div>
+        <div class="modal-footer">
+          <p class="bg-danger" id="game-load-error" aria-hidden="true"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="final-jeopardy-modal" role="dialog" aria-labelledby="final-jeopardy-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+ 	      <button type="button" class="btn btn-primary" id="final-answer-show-button">Show</button>
+          <h4 class="modal-title text-center" id="final-jeopardy-modal-answer">Modal title</h4>
+        </div>
+
+        <div id="final-jeopardy-score-input-div" class="modal-body text-center">
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Red Wager" id="wager-player-1-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Blue Wager" id="wager-player-2-input" />
+          </div>
+
+          <div class="score-button-group col-md-4">
+            <input type="text" class="form-control" placeholder="Green Wager" id="wager-player-3-input" />
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div id="final-scoring-buttons" class="text-center modal-footer">
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p1-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P1
+              </button> 
+              <button type="button" class="btn btn-success final-score-button" id="final-p1-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P1
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p2-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P2
+              </button>
+              <button type="button" class="btn btn-success final-score-button" id="final-p2-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P2
+              </button>
+            </div>
+          </div>
+
+          <div class="score-button-group">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-danger final-score-button" id="final-p3-wrong-button">
+                <span class="glyphicon glyphicon-remove"></span>P3
+              </button>
+              <button type="button" class="btn btn-success final-score-button" id="final-p3-right-button">
+                <span class="glyphicon glyphicon-ok"></span>P3
+              </button>
+            </div>
+          </div>
+        </div><!-- /.scoring-buttons -->
+
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="final-score-close">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="daily-double-modal" role="dialog" aria-labelledby="daily-double-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" id="daily-double-modal-dialog">
+      <div class="modal-content" id="daily-double-modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center" id="daily-double-modal-title">Modal title</h4>
+        </div>
+
+        <div class="modal-body text-center">
+	        <img src="./daily_double.jpg" id="daily-double-logo-img">
+        </div>
+
+        <div id="adjust-score-input-div" class="modal-body text-center col-md-4 col-md-offset-4">
+          <input type="text" class="form-control" placeholder="Daily Double Wager" id="daily-double-wager-input" />
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="daily-double-wager">
+            Make Wager
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+</html>
