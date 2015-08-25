@@ -309,7 +309,7 @@ function loadBoard() {
             $.each(category.questions, function(n,question){
                 // Questions
                 column.append('<div class="well unanswered host-question text-center" data-question="' +
-                    n + '">$' + question.value + ' - ' + question.answer + '</div>');
+                    n + '">$' + question.value + ': ' + question.question + ' - <i>' + question.answer + '</i></div>');
             });
         });
     }
