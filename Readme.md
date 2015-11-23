@@ -4,6 +4,8 @@ A HTML5 version of Jeopardy using Javascript, JQuery, JSON, and Bootstrap.
 
 ## Code Example
 
+![alt tag](https://pbs.twimg.com/media/CMypgi4WcAA1U7_.png)
+
 Use board.json for sample input. Use that format when loading the game.
 
 ## Motivation
