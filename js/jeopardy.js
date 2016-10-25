@@ -1,6 +1,12 @@
 $(function(){
     $('#game-load-modal').modal('show');
-    openingTheme.play();
+    chooseTheme = Math.random() < 0.5 ? true : false;
+    if (chooseTheme) {
+	    openingTheme.play();
+	}
+	else {
+		openingRockTheme.play();
+	}
     $('#game-load-input-button').click(function(){
         var file = $('#input-file').prop('files')[0];
         if ($('#input-file').val() != '') {
@@ -14,6 +20,8 @@ $(function(){
                 loadBoard();
                 openingTheme.pause();
                 openingTheme.currentTime = 0;
+                openingRockTheme.pause();
+                openingRockTheme.currentTime = 0;
                 var boardFillSound = new Audio('./sounds/board_fill.mp3');
                 boardFillSound.play();
                 $('#game-load-modal').modal('hide');
@@ -182,6 +190,7 @@ var timerMaxCount = 5;
 var timerObject;
 var timerCount;
 var gameDataFile;
+var openingRockTheme = new Audio('./sounds/theme_rock.mp3');
 var openingTheme = new Audio('./sounds/theme.mp3');
 
 
@@ -251,7 +260,7 @@ function loadBoard() {
         $('#control-info').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' +
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
-        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
+        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./images/final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
         	'<h2 id="final-jeopardy-question" class="question-text">' +
             currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' +
             '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' +

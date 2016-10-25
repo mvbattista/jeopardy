@@ -259,7 +259,7 @@ function loadBoard() {
         $('#control-info').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' +
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
-        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
+        board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./images/final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
         	'<h2 id="final-jeopardy-question" class="question-text">' +
             currentBoard['answer'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' +
             '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' +

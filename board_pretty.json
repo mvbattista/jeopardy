@@ -65,32 +65,32 @@
             "questions": [
                 {
                     "answer": "What is the Flash?",
-                    "image": "flash.png",
+                    "image": "images/flash.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
                     "value": 200
                 },
                 {
                     "answer": "What is S.H.I.E.L.D.?",
-                    "image": "shield.png",
+                    "image": "images/shield.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
                     "value": 400
                 },
                 {
                     "answer": "What is Deadpool?",
-                    "image": "deadpool.png",
+                    "image": "images/deadpool.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
                     "value": 600,
                     "daily-double": true
                 },
                 {
                     "answer": "What is Spawn?",
-                    "image": "spawn.png",
+                    "image": "images/spawn.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
                     "value": 800
                 },
                 {
                     "answer": "What is The Red Mist?",
-                    "image": "redmist.png",
+                    "image": "images/redmist.png",
                     "question": "Art courtesy http://kalangozilla.deviantart.com/",
                     "value": 1000
                 }
