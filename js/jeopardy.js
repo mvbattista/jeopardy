@@ -32,6 +32,12 @@ $(function(){
 
         }
     });
+    $('#kill-music-button').click(function(){
+        openingTheme.pause();
+        openingTheme.currentTime = 0;
+        openingRockTheme.pause();
+        openingRockTheme.currentTime = 0;
+    });
 
     $('#next-round').unbind('click').click(function(e){
         e.stopPropagation();
