@@ -1,6 +1,6 @@
-
+.DS_Store
 index_tidy.html
-
 *.wav
 
 jeopardystuff.zip
+.idea/

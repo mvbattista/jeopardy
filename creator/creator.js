@@ -11,7 +11,7 @@ var app = angular.module('jeopardy-creator',[]);
               "answer": "Who is some guy in Normandy But I just won $75,000!",
               "category": "MILITARY MEN",
               "question": "On June 6, 1944 he said, \"The eyes of the world are upon you\""
-          },
+          }
         };
 
         $scope.load = function(){
