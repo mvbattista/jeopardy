@@ -1,15 +1,16 @@
 $(function(){
     $('#game-load-modal').modal('show');
-    chooseTheme = Math.random() < 0.5 ? true : false;
+    chooseTheme = Math.random() < 0.5;
     if (chooseTheme) {
 	    openingTheme.play();
 	}
 	else {
 		openingRockTheme.play();
+        // openingTheme.play();
 	}
     $('#game-load-input-button').click(function(){
         var file = $('#input-file').prop('files')[0];
-        if ($('#input-file').val() != '') {
+        if ($('#input-file').val() !== '') {
             var reader = new FileReader();
             reader.readAsText(file);
             reader.onload = function(){
@@ -17,6 +18,9 @@ $(function(){
                 var data = $.parseJSON(fileText);
                 jsonData = data;
                 currentBoard = jsonData[rounds[currentRound]];
+                $("#player-1-name").empty().text(playerTranslation[1]);
+                $("#player-2-name").empty().text(playerTranslation[2]);
+                $("#player-3-name").empty().text(playerTranslation[3]);
                 loadBoard();
                 openingTheme.pause();
                 openingTheme.currentTime = 0;
@@ -38,6 +42,13 @@ $(function(){
         openingRockTheme.pause();
         openingRockTheme.currentTime = 0;
     });
+    $('#play-music-button').click(function(){
+        openingTheme.play();
+        openingTheme.currentTime = 0;
+        openingRockTheme.pause();
+        openingRockTheme.currentTime = 0;
+    });
+
 
     $('#next-round').unbind('click').click(function(e){
         e.stopPropagation();
@@ -83,7 +94,13 @@ $(function(){
             $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
             $('#question').empty().text(currentBoard[category].questions[question].question);
             if (questionImage){
-                $('#question-image').empty().append("<img src=./" + questionImage + ">").show();
+                if (questionImage.startsWith("http")) {
+                    srcPrefix = ''
+                }
+                else {
+                    srcPrefix = './'
+                }
+                $('#question-image').empty().append("<img src=" + srcPrefix + questionImage + ">").show();
             }
             else {
                 $('#question-image').empty().hide();
@@ -105,7 +122,7 @@ $(function(){
             var scoreVariable = 'score_player_' + control;
 
             //get max of maxRoundWager and controlling user score.
-            if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue != '' && parseInt(inputDailyDoubleValue) >= 5
+            if ( !(isNaN(inputDailyDoubleValue)) && inputDailyDoubleValue !== '' && parseInt(inputDailyDoubleValue) >= 5
             	&& Math.max(maxRoundWager, window[scoreVariable]) >= parseInt(inputDailyDoubleValue) ) {
 
                 value = parseInt(inputDailyDoubleValue);
@@ -152,7 +169,8 @@ $(function(){
         $('#final-jeopardy-question').show();
         var revealSound = new Audio('./sounds/final_jeopardy.mp3');
         revealSound.play();
-        $('final-jeopardy-logo-img').hide();
+        $('#final-image').show();
+        $('#final-jeopardy-logo-img').hide();
         $('#final-jeopardy-music-button').show();
         // console.log('30 seconds, good luck'); Cue music
     });
@@ -160,6 +178,7 @@ $(function(){
         $(this).hide();
         var thinkMusicSound = new Audio('./sounds/think_music.mp3');
         thinkMusicSound.play();
+
         setTimeout(function(){
             $('#final-jeopardy-answer-button').show();
         }, 30000);
@@ -198,6 +217,7 @@ var timerCount;
 var gameDataFile;
 var openingRockTheme = new Audio('./sounds/theme_rock.mp3');
 var openingTheme = new Audio('./sounds/theme.mp3');
+// var openingTheme = new Audio('./sounds/theme_modern.mp3');
 
 
 function runTimer() {
@@ -208,7 +228,7 @@ function runTimer() {
             runTimer();
         }
         else {
-            var timeUpAudio = new Audio('./sounds/time_up.mp3')
+            var timeUpAudio = new Audio('./sounds/time_up.mp3');
             timeUpAudio.play();
             // Doo doo doo
             resetTimer();
@@ -232,7 +252,7 @@ function adjustScores(){
             if (!(isNaN(newScoreValue))) {
                 window[scoreVariableName] = parseInt(newScoreValue);
             }
-        };
+        }
 		control = $("input[name=control-input]:checked").val();
 
         updateScore();
@@ -262,18 +282,35 @@ function loadBoard() {
     //function that turns the board.json (loaded in the the currentBoard variable) into a jeopardy board
     var board = $('#main-board');
     if (rounds[currentRound] === "final-jeopardy") {
+        finalQuestionImage = currentBoard['image'];
         $('#end-round').hide();
         $('#control-info').hide();
         $('#main-board-categories').append('<div class="text-center col-md-6 col-md-offset-3"><h2 class="category-text">' +
             currentBoard['category'] + '</h2></div>').css('background-color', 'navy');
+        finalImage = '<div id="final-image" class="text-center"></div>';
         board.append('<div class="text-center col-md-6 col-md-offset-3"><h2><img src="./images/final_jeopardy.png" id="final-jeopardy-logo-img"></h2>'+
-        	'<h2 id="final-jeopardy-question" class="question-text">' +
+        	finalImage + '<h2 id="final-jeopardy-question" class="question-text">' +
             currentBoard['question'] + '</h2><button class="btn btn-primary" id="final-jeopardy-question-button">Show Question</button>' +
             '<button class="btn btn-primary" id="final-jeopardy-music-button">30 Seconds, Good Luck</button>' +
             '<button class="btn btn-primary" id="final-jeopardy-answer-button">Show Answer</button></div>').css('background-color', 'navy');
         $('#final-jeopardy-question').hide();
         $('#final-jeopardy-music-button').hide();
         $('#final-jeopardy-answer-button').hide();
+        if (finalQuestionImage){
+            if (finalQuestionImage.startsWith("http")) {
+                srcPrefix = ''
+            }
+            else {
+                srcPrefix = './'
+            }
+           $('#final-image').empty().append("<img src=" + srcPrefix + finalQuestionImage + ">").hide();
+        }
+        else {
+            $('#final-image').empty().hide();
+        }
+        $('#wager-player-1-input').attr("placeholder", playerTranslation[1] + " Wager");
+        $('#wager-player-2-input').attr("placeholder", playerTranslation[2] + " Wager");
+        $('#wager-player-3-input').attr("placeholder", playerTranslation[3] + " Wager");
     }
     else {
 	    if (rounds[currentRound] === "double-jeopardy") {

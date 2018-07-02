@@ -47,15 +47,15 @@
 
     <div class="panel-footer">
       <div class="col-md-4" id="player-1-score-div">
-        <h4>Red: <span id="player-1-score">$0</span></h4>
+        <h4><span id="player-1-name">Red</span>: <span id="player-1-score">$0</span></h4>
       </div>
 
       <div class="col-md-4" id="player-2-score-div">
-        <h4>Blue: <span id="player-2-score">$0</span></h4>
+        <h4><span id="player-2-name">Blue</span>: <span id="player-2-score">$0</span></h4>
       </div>
 
       <div class="col-md-4" id="player-3-score-div">
-        <h4>Green: <span id="player-3-score">$0</span></h4>
+        <h4><span id="player-3-name">Green</span>: <span id="player-3-score">$0</span></h4>
       </div>
 
       <div class="clearfix"></div>
@@ -220,6 +220,7 @@
           <input type="file" id="input-file">
           <button type="button" class="btn btn-primary" id="game-load-input-button">Load Game</button>
           <button type="button" class="btn btn-danger" id="kill-music-button">Kill Music </button>
+          <button type="button" class="btn btn-success" id="play-music-button">Play Music</button>
         </div>
         <div class="modal-footer">
           <p class="bg-danger" id="game-load-error" aria-hidden="true"></p>
@@ -309,7 +310,7 @@
 	        <img src="./images/daily_double.jpg" id="daily-double-logo-img">
         </div>
 
-        <div id="adjust-score-input-div" class="modal-body text-center col-md-4 col-md-offset-4">
+        <div id="daily-double-score-input-div" class="modal-body text-center col-md-4 col-md-offset-4">
           <input type="text" class="form-control" placeholder="Daily Double Wager" id="daily-double-wager-input" />
           <div class="clearfix"></div>
         </div>
