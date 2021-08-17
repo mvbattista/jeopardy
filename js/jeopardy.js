@@ -94,7 +94,7 @@ $(function(){
             $('#modal-answer-title').empty().text(currentBoard[category].name + ' - $' + value);
             $('#question').empty().text(currentBoard[category].questions[question].question);
             if (questionImage){
-                if (questionImage.startsWith("http")) {
+                if (questionImage.startsWith("http") || questionImage.startsWith("data")) {
                     srcPrefix = ''
                 }
                 else {
