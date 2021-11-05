@@ -297,7 +297,7 @@ function loadBoard() {
         $('#final-jeopardy-music-button').hide();
         $('#final-jeopardy-answer-button').hide();
         if (finalQuestionImage){
-            if (finalQuestionImage.startsWith("http")) {
+            if (finalQuestionImage.startsWith("http") || finalQuestionImage.startsWith("data")) {
                 srcPrefix = ''
             }
             else {
