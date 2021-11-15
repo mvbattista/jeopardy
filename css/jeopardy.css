@@ -146,3 +146,8 @@ body {
 #end-round {
 	margin-right: 10px;
 }
+
+#question-image img, #final-image img {
+    	max-width: 100%;
+	max-height: 60vh;
+}
