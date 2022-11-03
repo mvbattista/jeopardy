@@ -308,8 +308,13 @@ function loadBoard() {
 
             $.each(category.questions, function(n,question){
                 // Questions
-                column.append('<div class="well unanswered host-question text-center" data-question="' +
-                    n + '">$' + question.value + ': ' + question.question + ' - <i>' + question.answer + '</i></div>');
+                var isDailyDouble = 'daily-double' in question ? question['daily-double'] : false;
+                var ddStyle = isDailyDouble ? ' style="color:#FF0000" ' : "";
+                var hasImage = 'image' in question ? true : false;
+                var imageLink = hasImage ? '<p><a href="' + question.image + '">Image</a></p>' : '';
+                column.append('<div ' + ddStyle + 'class="well unanswered host-question text-center" data-question="' +
+                    n + '">$' + question.value + ': ' + question.question + ' - <i>' + question.answer + '</i>' + imageLink + '</div>');
+
             });
         });
     }
