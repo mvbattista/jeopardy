@@ -87,6 +87,12 @@ body {
 	color: white;
 }
 
+#question-image {
+    height:100%;
+    flex: 1;
+    overflow-y: auto;
+}
+
 #daily-double-modal .modal-footer {
 	text-align: center;
 }
@@ -136,6 +142,9 @@ body {
 #question-modal-body {
 	margin-left: 10%;
 	margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #game-load-logo-img {
