@@ -1,6 +1,8 @@
-# Include your project-specific ignores in this file
-# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
-# Useful .gitignore templates: https://github.com/github/gitignore
-node_modules
-dist
-.cache
+.DS_Store
+index_tidy.html
+*.wav
+
+jeopardystuff.zip
+.idea/
+games/wdwnt/*.*
+images/wdwnt/
