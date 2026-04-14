@@ -46,10 +46,9 @@ function buildRoundHTML(round) {
                 </div>`;
 
         category.questions.forEach((q, qIdx) => {
-            html += `
-                <button class="question-tile" data-round="${round}" data-cat="${catIdx}" data-q="${qIdx}">
+          html += `
+                <button class="question-tile ${q['daily-double'] ? 'dd-badge' : ''}" data-round="${round}" data-cat="${catIdx}" data-q="${qIdx}">
                     $${esc(q.value)}
-                    ${q['daily-double'] ? '<span class="dd-badge">DAILY DOUBLE</span>' : ''}
                 </button>`;
         });
 
