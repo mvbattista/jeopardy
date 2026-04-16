@@ -1,7 +1,7 @@
 'use strict';
 
 const ROUNDS = ['jeopardy', 'double-jeopardy'];
-const DEFAULT_VALUES = [100, 200, 300, 400, 500];
+const DEFAULT_VALUES = [200, 400, 600, 800, 1000];
 
 let board = {
     "jeopardy": [],
@@ -91,7 +91,7 @@ document.addEventListener('click', function (e) {
         const cat = board[addQ.dataset.round][+addQ.dataset.cat];
         cat.questions.push({
             question: "ENTER YOUR QUESTION HERE.",
-            value: DEFAULT_VALUES[cat.questions.length] || 0,
+            value: DEFAULT_VALUES[cat.questions.length] * ( addQ.dataset.round == "jeopardy" ? 1 : 2 ) || 0,
             answer: "Enter the answer."
         });
         renderBoard();
